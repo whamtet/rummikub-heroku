@@ -111,7 +111,7 @@
    [scroll-box2]
    [:div {
           :class "center"
-          :style {:height "15%"}}
+          :style {:height "10%"}}
     [:form {:on-submit new-chat}
      [:input {:type "text"
               :id "new-chat"
