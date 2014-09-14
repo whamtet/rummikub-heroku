@@ -17,8 +17,7 @@
    [taoensso.sente :as sente]
    )
   (:require [org.httpkit.server :as httpkit])
-  (:require [clojure.core.async :as async :refer [<! >! put! close! go chan go-loop]])
-  )
+  (:require [clojure.core.async :as async :refer [<! >! put! close! go chan go-loop]]))
 
 (declare ring-ajax-get-or-ws-handshake ring-ajax-post ch-chsk chsk-send! connected-uids)
 
@@ -29,7 +28,7 @@
 (defn random-color []
   [(rand-int 200) (rand-int 200) (rand-int 200)])
 
-(defonce chats (atom []))
+(def chats (atom [] #_(vec (for [i (range 30)] {:user "poos" :color (random-color) :content (str "hi there " i)}))))
 
 (defroutes app
   (GET "/" {{user :user} :session}
@@ -54,9 +53,8 @@
         wrap-edn/wrap-edn-params
         (site {:session {:store store}}))))
 
-(defn -main [& [port]]
-
-  (let [{:keys [ch-recv send-fn ajax-post-fn ajax-get-or-ws-handshake-fn
+(defn sente-functions []
+    (let [{:keys [ch-recv send-fn ajax-post-fn ajax-get-or-ws-handshake-fn
                 connected-uids]}
         (sente/make-channel-socket! {})]
     (println "defining functions")
@@ -65,12 +63,10 @@
     (def ch-chsk                       ch-recv) ; ChannelSocket's receive channel
     (def chsk-send!                    send-fn) ; ChannelSocket's send API fn
     (def connected-uids                connected-uids) ; Watchable, read-only atom
-    )
+    ))
 
-  (let [port (Integer. (or port (env :port) 5000))
-        server (httpkit/run-server #_jetty/run-jetty (wrap-app #'app) {:port port :join? false})
-        go-task
-        (util/cancellable-go
+(defn make-go []
+  (util/cancellable-go
          (let [
                {:keys [ring-req event ?reply-fn push-fn]} (<! ch-chsk)
                [code data] event
@@ -84,11 +80,24 @@
                    user-id nil
                    ]
                (chsk-send! user-id new-chats-event))
-             (println event))))
-        ]
-    (println "server ready")
-    [server go-task]))
+             nil #_(println event)))))
 
-        ;; For interactive development:
-        ;; (.stop server)
-        ;(defonce server (-main))
+
+(defn make-server [port]
+  (httpkit/run-server #_jetty/run-jetty (wrap-app #'app) {:port port :join? false}))
+
+(defn -main [& [port]]
+  (let [port (Integer. (or port (env :port) 5000))
+        ]
+    (sente-functions)
+    (make-go)
+    (make-server port)
+    (println "server ready")))
+
+(defonce sente (sente-functions))
+(declare my-go)
+(if (bound? #'my-go)
+  (reset! my-go false))
+(def my-go (make-go))
+(defonce server (make-server 5000))
+

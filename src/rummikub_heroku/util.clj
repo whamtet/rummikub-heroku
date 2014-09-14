@@ -5,10 +5,10 @@
 
 (defmacro cancellable-go [& body]
   `(let [
-         cancel-atom# (atom false)
+         continue-atom# (atom true)
          ]
      (~'go
-      (while (not @cancel-atom#)
+      (while @continue-atom#
         ~@body)
       (println "cancelling go"))
-     cancel-atom#))
+     continue-atom#))

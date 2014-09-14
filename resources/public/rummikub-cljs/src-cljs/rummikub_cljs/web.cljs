@@ -16,8 +16,8 @@
 
 (let [{:keys [chsk ch-recv send-fn state]}
       (sente/make-channel-socket! "/chsk" ; Note the same path as before
-       {:type :auto ; e/o #{:auto :ajax :ws}
-       })]
+                                  {:type :auto ; e/o #{:auto :ajax :ws}
+                                   })]
   (def chsk       chsk)
   (def ch-chsk    ch-recv) ; ChannelSocket's receive channel
   (def chsk-send! send-fn) ; ChannelSocket's send API fn
@@ -73,25 +73,42 @@
     (reset! current-chat "")
     false))
 
+(defn scroll-box []
+  [:div {:style {:overflow-y "scroll"
+                 :height "80%"
+                 :scrollTop 1000000
+                 }
+         :class "center"
+         }
+   [:h4 "Chat Box"]
+   (map-indexed
+    (fn [i {:keys [user color content]}]
+      ^{:key (str i "-chat-msg")}
+      [:div
+       [:span {:style {:color (color-str color)}}
+        user]
+       ": " content])
+    @chat-atom)])
+
+(defn scroll-to-bottom [this]
+  (let [
+        node (.getDOMNode this)
+        ]
+    (set! (.-scrollTop node) (.-scrollHeight node))))
+
+(def scroll-box2 (with-meta scroll-box {:component-did-update scroll-to-bottom
+                                        :component-did-mount scroll-to-bottom}))
+
+;; var node = this.getDOMNode();
+;;   node.scrollTop = node.scrollHeight;
+
 (defn chat-box []
-  [:div {:style {:width "20%" :height "90%"
+  [:div {:style {:width "30%" :height "90%"
                  :border "1px solid black"
                  :position "absolute"
                  :margin "0.5%"
                  :right 0 :bottom 0}}
-   [:div {:style {:overflow-y "scroll"
-                  :height "80%"
-                  }
-          :class "center"
-          }
-    (map-indexed
-     (fn [i {:keys [user color content]}]
-       ^{:key (str i "-chat-msg")}
-       [:div
-        [:span {:style {:color (color-str color)}}
-         user]
-        ": " content])
-     @chat-atom)]
+   [scroll-box2]
    [:div {
           :class "center"
           :style {:height "15%"}}
@@ -104,6 +121,8 @@
               }]]
     ]
    ])
+
+(def chat-box2 (with-meta chat-box {:component-did-update #(println "done")}))
 
 (defn render []
   (reagent/render-component
