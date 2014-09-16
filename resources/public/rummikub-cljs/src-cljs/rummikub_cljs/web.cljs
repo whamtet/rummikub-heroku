@@ -338,7 +338,7 @@
               :on-click #(chsk-send! [:rummikub/sort-tiles user])
               }]]))
 
-(def show-users? (atom true))
+(def show-users? (atom false))
 
 (defn users-box []
   [:div {:style {:width "28%" :height "90%"
