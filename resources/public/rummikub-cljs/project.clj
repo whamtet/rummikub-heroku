@@ -33,5 +33,6 @@
               :output-dir "out"
               :pretty-print true
               :optimizations :none
+;              :optimizations :whitespace
               }}}}
   )

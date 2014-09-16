@@ -10,16 +10,17 @@
      [:script {:src "/rummikub-cljs/out/goog/base.js"}]
      [:script {:src "/rummikub-cljs/rummikub_cljs.js"}]
      [:link {:rel "stylesheet" :type "text/css" :href "/style.css"}]
+     [:script {:src "/jquery.js"}]
+     [:script {:src "/keymaster.js"}]
      [:script {:src "/react-0.9.0.js"}]
      [:script "
       goog.require('rummikub_cljs.core')
       goog.require('rummikub_cljs.web')
-      document.body.onload = function() {
+      $(function() {
         c = rummikub_cljs.core
         w = rummikub_cljs.web
-      }
+      })
       "]
-
      [:script {:src "/rummikub-heroku.js"}]
      "<meta charset=\"UTF-8\">"
      ]
