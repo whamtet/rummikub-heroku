@@ -11,3 +11,23 @@ bind_variable = function(klass, k) {
     throw err
   }
 }
+
+send_attachment = function(event) {
+  var fileSelect = event.target
+
+  var files = fileSelect.files;
+
+  var formData = new FormData();
+
+  var file = files[0];
+
+  // Add the file to the request.
+  formData.append('game-data', file, file.name);
+  $.ajax({
+    url: "/restore-backup",
+    type: "POST",
+    data: formData,
+    processData: false,  // tell jQuery not to process the data
+    contentType: false,   // tell jQuery not to set contentType
+  });
+}

@@ -159,6 +159,20 @@
           (if new-user-event
             (chsk-send! user-id new-user-event))
           (assoc (util/pr-response (or existing-user new-user)) :session {:user (or existing-user new-user)})))
+  (GET "/rummikub-backup" []
+       {:status 200
+        :headers {"Content-Type" "application/edn"}
+        :body (pr-str {:users-data @users :tiles-data @tiles})})
+  (POST "/restore-backup" [game-data]
+        (let [
+              {f :tempfile} game-data
+              {:keys [users-data tiles-data]} (read-string (slurp f))
+              ]
+          (reset! users users-data)
+          (reset! tiles tiles-data)
+          (chsk-send! nil [:rummikub/users-update users-data])
+          (chsk-send! nil [:rummikub/tiles-update tiles-data])
+          (response/response "ok")))
 
   (GET  "/chsk" req (ring-ajax-get-or-ws-handshake req))
   (POST "/chsk" req (ring-ajax-post                req))
@@ -244,6 +258,8 @@
              new-tiles (reset! tiles (get-tiles))
              ]
          (chsk-send! nil [:rummikub/tiles-update new-tiles]))
+       :rummikub/pass-sound
+       (chsk-send! nil [:rummikub/pass-sound nil])
        nil #_(println event)))))
 
 

@@ -58,6 +58,8 @@
            (reset! current-player data)
            :rummikub/users-update
            (reset! users-atom data)
+           :rummikub/pass-sound
+           (play-sound)
            (println event)))
        (println event)))))
 
@@ -143,6 +145,14 @@
     [:input {:type "button"
              :value "Edit Game"
              :on-click #(reset! show-users? true)}]
+    [:input {:type "button"
+             :value "Backup"
+             :on-click #(core/link-to "/rummikub-backup")}][:br]
+     [:form {:style {:display "inline-block"}}
+      [:input {:type "file"
+               :id "report-to-add"
+               :on-change js/send_attachment
+               }]][:br]
     ]])
 
 (defn minimized-chat-box []
@@ -162,6 +172,10 @@
   (doto
     (js/document.getElementById "yourAudioTag") .load .play))
 
+(defn pass []
+  (chsk-send! [:rummikub/pass-sound nil])
+  (chsk-send! [:rummikub/new-user nil]))
+
 (defn turn-indicator []
   (let [
         {this-player :user} @user-atom
@@ -180,9 +194,7 @@
      (if (= this-player user)
        [:input {:type "button"
                 :value "End Turn"
-                :on-click #(do
-                             (play-sound)
-                             (chsk-send! [:rummikub/new-user nil]))}])]))
+                :on-click pass}])]))
 
 (defn stand-box [k i j tile user value color]
   [:span {:style
@@ -388,13 +400,7 @@
 (def contents2 (with-meta contents
                  {:component-did-mount #(js/key "enter"
                                                 (fn [] (if (= @user-atom @current-player)
-                                                         (do
-                                                           (play-sound)
-                                                           (chsk-send! [:rummikub/new-user nil])))))}))
-
-;; componentDidMount: function() {
-;;   keymaster('esc', this.onClose)
-;; },
+                                                         (pass))))}))
 
 (defn render []
   (reagent/render-component
@@ -405,6 +411,3 @@
   (if @user-atom
     (render)
     (get-user)))
-
-(defn t [] (p @user-atom))
-(defn t2 [] (p @users-atom))

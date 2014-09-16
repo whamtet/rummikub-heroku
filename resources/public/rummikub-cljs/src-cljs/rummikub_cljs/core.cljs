@@ -79,7 +79,7 @@
 (defn eager-every? [f s]
   (every? identity (doall (map f s))))
 
-(defn link-to [url2 m new-window?]
+(defn link-to [url2 m]
   (set! (.-location js/document) (url url2 m)))
 
 (defn link-to2 [url2 m new-window?]
