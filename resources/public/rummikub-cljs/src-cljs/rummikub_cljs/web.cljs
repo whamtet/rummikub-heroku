@@ -9,7 +9,8 @@
    [taoensso.sente  :as sente :refer (cb-success?)]
    [cljs.core.async :refer [<! >! put! close! chan]]
    )
-  (:require-macros [cljs.core.async.macros :refer [go]])
+  (:require-macros [cljs.core.async.macros :refer [go]]
+                   [rummikub-cljs.macros :as m])
   )
 
 (def p #(-> % pr-str println))
@@ -95,7 +96,15 @@
     (reset! current-chat "")
     false))
 
-(defn scroll-box []
+(defn scroll-to-bottom [this]
+  (let [
+        node (.getDOMNode this)
+        ]
+    (set! (.-scrollTop node) (.-scrollHeight node))))
+
+(m/defm scroll-box []
+  {:component-did-update scroll-to-bottom
+   :component-did-mount scroll-to-bottom}
   [:div {:style {:overflow-y "scroll"
                  :height "80%"
                  }
@@ -111,15 +120,6 @@
        ": " content])
     @chat-atom)])
 
-(defn scroll-to-bottom [this]
-  (let [
-        node (.getDOMNode this)
-        ]
-    (set! (.-scrollTop node) (.-scrollHeight node))))
-
-(def scroll-box2 (with-meta scroll-box {:component-did-update scroll-to-bottom
-                                        :component-did-mount scroll-to-bottom}))
-
 (def margin "0.5%")
 
 (defn chat-box []
@@ -128,7 +128,7 @@
                  :position "absolute"
                  :margin margin
                  :right 0 :bottom 0}}
-   [scroll-box2]
+   [scroll-box]
    [:div {
           :class "center"
           :style {:height "10%"}}
@@ -148,11 +148,11 @@
     [:input {:type "button"
              :value "Backup"
              :on-click #(core/link-to "/rummikub-backup")}][:br]
-     [:form {:style {:display "inline-block"}}
-      [:input {:type "file"
-               :id "report-to-add"
-               :on-change js/send_attachment
-               }]][:br]
+    [:form {:style {:display "inline-block"}}
+     [:input {:type "file"
+              :id "report-to-add"
+              :on-change js/send_attachment
+              }]][:br]
     ]])
 
 (defn minimized-chat-box []
@@ -213,7 +213,10 @@
           }
    value])
 
-(defn table-box [k left top color tile value]
+(m/defm table-box [k left top color tile value]
+  {
+   :component-will-update before-update
+   }
   [:span {:style
           {:border "1px solid black"
            :position "absolute"
@@ -253,15 +256,6 @@
           ]
       (animate (str color " " value))))
 
-(def table-box2 (with-meta table-box
-                  {
-                   :component-will-update before-update
-                   }
-                  ))
-(def stand-box2 (with-meta stand-box
-                  {
-                   }))
-
 (defn table []
   [:div {:style
          {:margin margin
@@ -289,7 +283,7 @@
                ]
          :when (= location "table")]
      ^{:key (str "tablized" k)}
-     [table-box2 k left top color tile value]
+     [table-box k left top color tile value]
      )
    [turn-indicator]
    ])
@@ -337,18 +331,17 @@
                  ]
            :when (= location user)]
        ^{:key k}
-       [stand-box2 k i j tile user value color]
+       [stand-box k i j tile user value color]
        )
-     [:input {:type "button"
-              :style
-              {
-               :position "absolute"
-               :right 0
-               :bottom 0
-               :margin margin}
-              :value "Sort Tiles"
-              :on-click #(chsk-send! [:rummikub/sort-tiles user])
-              }]]))
+     [:span {:style {:position "absolute" :right 0 :bottom 0 :margin margin}}
+      [:input {:type "button"
+               :value "Pick Up"
+               :on-click #(chsk-send! [:rummikub/pick-up user])}]
+      [:input {:type "button"
+               :value "Sort Tiles"
+               :on-click #(chsk-send! [:rummikub/sort-tiles user])
+               }]]]
+    ))
 
 (def show-users? (atom false))
 
@@ -376,7 +369,10 @@
             :on-click #(reset! show-users? false)}]
    ])
 
-(defn contents []
+(m/defm contents []
+  {:component-did-mount #(js/key "enter"
+                                 (fn [] (if (= @user-atom @current-player)
+                                          (pass))))}
   [:div {
          :on-drag-over #(let [
                               x (.-clientX %)
@@ -397,14 +393,9 @@
    [:audio {:id "yourAudioTag"}
     [:source {:src "/pass.wav" :type "audio/wav"}]]])
 
-(def contents2 (with-meta contents
-                 {:component-did-mount #(js/key "enter"
-                                                (fn [] (if (= @user-atom @current-player)
-                                                         (pass))))}))
-
 (defn render []
   (reagent/render-component
-   [contents2]
+   [contents]
    (.getElementById js/document "content")))
 
 (defn main []

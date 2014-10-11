@@ -1,12 +1,13 @@
 
 (ns reagent.core
   (:refer-clojure :exclude [partial atom flush])
-  (:require-macros [reagent.debug :refer [dbg prn]])
   (:require [reagent.impl.template :as tmpl]
             [reagent.impl.component :as comp]
             [reagent.impl.util :as util]
             [reagent.impl.batching :as batch]
-            [reagent.ratom :as ratom]))
+            [reagent.ratom :as ratom]
+            [reagent.debug :refer-macros [dbg prn]]
+            [reagent.interop :refer-macros [oset oget odo]]))
 
 (def React util/React)
 
@@ -27,17 +28,22 @@ Returns the mounted component instance."
   ([comp container]
      (render-component comp container nil))
   ([comp container callback]
-     (.renderComponent React (as-component comp) container callback)))
+   (let [f (fn []
+             (as-component (if (fn? comp) (comp) comp)))]
+     (util/render-component f container callback))))
 
 (defn unmount-component-at-node
   "Remove a component from the given DOM node."
   [container]
-  (.unmountComponentAtNode React container))
+  (util/unmount-component-at-node container))
 
 (defn render-component-to-string
   "Turns a component into an HTML string."
   ([component]
-     (.renderComponentToString React (as-component component))))
+     (odo React :renderComponentToString (as-component component))))
+
+(defn ^:export force-update-all []
+  (util/force-update-all))
 
 (defn create-class
   "Create a component, React style. Should be called with a map,
@@ -69,6 +75,7 @@ Everything is optional, except :render.
   "Returns the state of a component, as set with replace-state or set-state."
   [this]
   (assert (util/reagent-component? this))
+  ;; TODO: Warn if top-level component
   (comp/state this))
 
 (defn replace-state
@@ -107,7 +114,7 @@ Everything is optional, except :render.
 (defn dom-node
   "Returns the root DOM node of a mounted component."
   [this]
-  (.getDOMNode this))
+  (odo this :getDOMNode))
 
 
 (defn merge-props
@@ -135,6 +142,20 @@ re-rendered."
   ([x] (ratom/atom x))
   ([x & rest] (apply ratom/atom x rest)))
 
+;; RCursor
+
+(defn cursor
+  "Provide a cursor into a Reagent atom.
+
+Behaves like a Reagent atom but focuses updates and derefs to
+the specified path within the wrapped Reagent atom. e.g.,
+  (let [c (cursor [:nested :content] ra)]
+    ... @c ;; equivalent to (get-in @ra [:nested :content])
+    ... (reset! c 42) ;; equivalent to (swap! ra assoc-in [:nested :content] 42)
+    ... (swap! c inc) ;; equivalence to (swap! ra update-in [:nested :content] inc)
+    )"
+  ([path] (fn [ra] (cursor path ra)))
+  ([path ra] (ratom/cursor path ra)))
 
 ;; Utilities
 

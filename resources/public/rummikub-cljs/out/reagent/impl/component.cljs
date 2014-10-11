@@ -1,22 +1,20 @@
 
 (ns reagent.impl.component
-  (:require [reagent.impl.util :as util :refer [cljs-level cljs-argv React]]
+  (:require [reagent.impl.util :as util :refer [React]]
             [reagent.impl.batching :as batch]
             [reagent.ratom :as ratom]
+            [reagent.interop :refer-macros [oget oset odo]]
             [reagent.debug :refer-macros [dbg prn]]))
 
 (declare ^:dynamic *current-component*)
 
-(def cljs-state "cljsState")
-(def cljs-render "cljsRender")
-
 ;;; State
 
 (defn state-atom [this]
-  (let [sa (aget this cljs-state)]
+  (let [sa (oget this :cljsState)]
     (if-not (nil? sa)
       sa
-      (aset this cljs-state (ratom/atom nil)))))
+      (oset this :cljsState (ratom/atom nil)))))
 
 (defn state [this]
   (deref (state-atom this)))
@@ -32,14 +30,14 @@
 
 ;;; Rendering
 
-(defn do-render [C]
-  (binding [*current-component* C]
-    (let [f (aget C cljs-render)
+(defn do-render [c]
+  (binding [*current-component* c]
+    (let [f (oget c :cljsRender)
           _ (assert (util/clj-ifn? f))
-          p (util/js-props C)
-          res (if (nil? (aget C "componentFunction"))
-                (f C)
-                (let [argv (aget p cljs-argv)
+          p (oget c :props)
+          res (if (nil? (oget c :componentFunction))
+                (f c)
+                (let [argv (oget p :argv)
                       n (count argv)]
                   (case n
                     1 (f)
@@ -49,11 +47,11 @@
                     5 (f (nth argv 1) (nth argv 2) (nth argv 3) (nth argv 4))
                     (apply f (subvec argv 1)))))]
       (if (vector? res)
-        (.asComponent C res (aget p cljs-level))
+        (odo c :asComponent res (oget p :level))
         (if (ifn? res)
           (do
-            (aset C cljs-render res)
-            (do-render C))
+            (oset c :cljsRender res)
+            (do-render c))
           res)))))
 
 
@@ -62,55 +60,53 @@
 (defn custom-wrapper [key f]
   (case key
     :getDefaultProps
-    (assert false "getDefaultProps not supported yet")
-    
+    (throw (js/Error. "getDefaultProps not supported yet"))
+
     :getInitialState
     (fn []
-      (this-as C
-               (set-state C (f C))))
+      (this-as c
+               (set-state c (f c))))
 
     :componentWillReceiveProps
     (fn [props]
-      (this-as C
-               (f C (aget props cljs-argv))))
+      (this-as c
+               (f c (oget props :argv))))
 
     :shouldComponentUpdate
     (fn [nextprops nextstate]
-      (this-as C
-               ;; Don't care about nextstate here, we use forceUpdate
-               ;; when only when state has changed anyway.
-               (let [inprops (util/js-props C)
-                     old-argv (aget inprops cljs-argv)
-                     new-argv (aget nextprops cljs-argv)]
-                 (if (nil? f)
-                   (not (util/equal-args old-argv new-argv))
-                   (f C old-argv new-argv)))))
+      (or util/*always-update*
+          (this-as c
+                   ;; Don't care about nextstate here, we use forceUpdate
+                   ;; when only when state has changed anyway.
+                   (let [old-argv (oget c :props :argv)
+                         new-argv (oget nextprops :argv)]
+                     (if (nil? f)
+                       (not (util/equal-args old-argv new-argv))
+                       (f c old-argv new-argv))))))
 
     :componentWillUpdate
     (fn [nextprops]
-      (this-as C
-               (let [next-argv (aget nextprops cljs-argv)]
-                 (f C next-argv))))
+      (this-as c
+               (f c (oget nextprops :argv))))
 
     :componentDidUpdate
     (fn [oldprops]
-      (this-as C
-               (let [old-argv (aget oldprops cljs-argv)]
-                 (f C old-argv))))
+      (this-as c
+               (f c (oget oldprops :argv))))
 
     :componentWillUnmount
     (fn []
-      (this-as C
-               (batch/dispose C)
+      (this-as c
+               (batch/dispose c)
                (when-not (nil? f)
-                 (f C))))
+                 (f c))))
 
     nil))
 
 (defn default-wrapper [f]
   (if (ifn? f)
     (fn [& args]
-      (this-as C (apply f C args)))
+      (this-as c (apply f c args)))
     f))
 
 (def dont-wrap #{:cljsRender :render :componentFunction})
@@ -118,7 +114,7 @@
 (defn dont-bind [f]
   (if (ifn? f)
     (doto f
-      (aset "__reactDontBind" true))
+      (oset :__reactDontBind true))
     f))
 
 (defn get-wrapper [key f name]
@@ -148,9 +144,9 @@
     :cljsRender render-f
     :render (if util/is-client
               (fn []
-                (this-as C
-                         (batch/run-reactively C #(do-render C))))
-              (fn [] (this-as C (do-render C))))))
+                (this-as c
+                         (batch/run-reactively c #(do-render c))))
+              (fn [] (this-as c (do-render c))))))
 
 (defn wrap-funs [fun-map]
   (let [render-fun (or (:componentFunction fun-map)
@@ -159,8 +155,8 @@
                   (str "Render must be a function, not "
                        (pr-str render-fun)))
         name (or (:displayName fun-map)
-                 (.-displayName render-fun)
-                 (.-name render-fun))
+                 (oget render-fun :displayName)
+                 (oget render-fun :name))
         name' (if (empty? name) (str (gensym "reagent")) name)
         fmap (-> fun-map
                  (assoc :displayName name')
@@ -173,7 +169,7 @@
   (reduce-kv (fn [o k v]
                (doto o
                  (aset (name k) v)))
-             #js {} m))
+             #js{} m))
 
 (defn cljsify [body]
   (-> body
@@ -186,10 +182,10 @@
   [body as-component]
   (assert (map? body))
   (let [spec (cljsify body)
-        _ (set! (.-asComponent spec) (dont-bind as-component))
-        res (.createClass React spec)
+        _ (oset spec :asComponent (dont-bind as-component))
+        res (odo React :createClass spec)
         f (fn [& args]
             (as-component (apply vector res args)))]
-    (set! (.-cljsReactClass f) res)
-    (set! (.-cljsReactClass res) res)
+    (util/cache-react-class f res)
+    (util/cache-react-class res res)
     f))

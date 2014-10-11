@@ -3,6 +3,7 @@ goog.provide('reagent.core');
 goog.require('cljs.core');
 goog.require('reagent.impl.util');
 goog.require('reagent.impl.component');
+goog.require('reagent.interop');
 goog.require('reagent.ratom');
 goog.require('reagent.impl.template');
 goog.require('reagent.impl.batching');
@@ -11,6 +12,7 @@ goog.require('reagent.impl.util');
 goog.require('reagent.impl.template');
 goog.require('reagent.ratom');
 goog.require('reagent.impl.batching');
+goog.require('reagent.debug');
 reagent.core.React = reagent.impl.util.React;
 reagent.core.is_client = reagent.impl.util.is_client;
 /**
@@ -30,7 +32,8 @@ reagent.core.render_component = (function() {
 var render_component = null;
 var render_component__2 = (function (comp,container){return render_component.call(null,comp,container,null);
 });
-var render_component__3 = (function (comp,container,callback){return reagent.core.React.renderComponent(reagent.core.as_component.call(null,comp),container,callback);
+var render_component__3 = (function (comp,container,callback){var f = (function (){return reagent.core.as_component.call(null,((cljs.core.fn_QMARK_.call(null,comp))?comp.call(null):comp));
+});return reagent.impl.util.render_component.call(null,f,container,callback);
 });
 render_component = function(comp,container,callback){
 switch(arguments.length){
@@ -49,13 +52,16 @@ return render_component;
 /**
 * Remove a component from the given DOM node.
 */
-reagent.core.unmount_component_at_node = (function unmount_component_at_node(container){return reagent.core.React.unmountComponentAtNode(container);
+reagent.core.unmount_component_at_node = (function unmount_component_at_node(container){return reagent.impl.util.unmount_component_at_node.call(null,container);
 });
 /**
 * Turns a component into an HTML string.
 */
-reagent.core.render_component_to_string = (function render_component_to_string(component){return reagent.core.React.renderComponentToString(reagent.core.as_component.call(null,component));
+reagent.core.render_component_to_string = (function render_component_to_string(component){return (reagent.core.React["renderComponentToString"])(reagent.core.as_component.call(null,component));
 });
+reagent.core.force_update_all = (function force_update_all(){return reagent.impl.util.force_update_all.call(null);
+});
+goog.exportSymbol('reagent.core.force_update_all', reagent.core.force_update_all);
 /**
 * Create a component, React style. Should be called with a map,
 * looking like this:
@@ -144,7 +150,7 @@ return reagent.impl.util.get_argv.call(null,this$);
 /**
 * Returns the root DOM node of a mounted component.
 */
-reagent.core.dom_node = (function dom_node(this$){return this$.getDOMNode();
+reagent.core.dom_node = (function dom_node(this$){return (this$["getDOMNode"])();
 });
 /**
 * Utility function that merges two maps, handling :class and :style
@@ -171,20 +177,20 @@ var atom = null;
 var atom__1 = (function (x){return reagent.ratom.atom.call(null,x);
 });
 var atom__2 = (function() { 
-var G__10915__delegate = function (x,rest){return cljs.core.apply.call(null,reagent.ratom.atom,x,rest);
+var G__10976__delegate = function (x,rest){return cljs.core.apply.call(null,reagent.ratom.atom,x,rest);
 };
-var G__10915 = function (x,var_args){
+var G__10976 = function (x,var_args){
 var rest = null;if (arguments.length > 1) {
   rest = cljs.core.array_seq(Array.prototype.slice.call(arguments, 1),0);} 
-return G__10915__delegate.call(this,x,rest);};
-G__10915.cljs$lang$maxFixedArity = 1;
-G__10915.cljs$lang$applyTo = (function (arglist__10916){
-var x = cljs.core.first(arglist__10916);
-var rest = cljs.core.rest(arglist__10916);
-return G__10915__delegate(x,rest);
+return G__10976__delegate.call(this,x,rest);};
+G__10976.cljs$lang$maxFixedArity = 1;
+G__10976.cljs$lang$applyTo = (function (arglist__10977){
+var x = cljs.core.first(arglist__10977);
+var rest = cljs.core.rest(arglist__10977);
+return G__10976__delegate(x,rest);
 });
-G__10915.cljs$core$IFn$_invoke$arity$variadic = G__10915__delegate;
-return G__10915;
+G__10976.cljs$core$IFn$_invoke$arity$variadic = G__10976__delegate;
+return G__10976;
 })()
 ;
 atom = function(x,var_args){
@@ -205,6 +211,38 @@ return atom;
 })()
 ;
 /**
+* Provide a cursor into a Reagent atom.
+* 
+* Behaves like a Reagent atom but focuses updates and derefs to
+* the specified path within the wrapped Reagent atom. e.g.,
+* (let [c (cursor [:nested :content] ra)]
+* ... @c ;; equivalent to (get-in @ra [:nested :content])
+* ... (reset! c 42) ;; equivalent to (swap! ra assoc-in [:nested :content] 42)
+* ... (swap! c inc) ;; equivalence to (swap! ra update-in [:nested :content] inc)
+* )
+*/
+reagent.core.cursor = (function() {
+var cursor = null;
+var cursor__1 = (function (path){return (function (ra){return cursor.call(null,path,ra);
+});
+});
+var cursor__2 = (function (path,ra){return reagent.ratom.cursor.call(null,path,ra);
+});
+cursor = function(path,ra){
+switch(arguments.length){
+case 1:
+return cursor__1.call(this,path);
+case 2:
+return cursor__2.call(this,path,ra);
+}
+throw(new Error('Invalid arity: ' + arguments.length));
+};
+cursor.cljs$core$IFn$_invoke$arity$1 = cursor__1;
+cursor.cljs$core$IFn$_invoke$arity$2 = cursor__2;
+return cursor;
+})()
+;
+/**
 * Run f using requestAnimationFrame or equivalent.
 */
 reagent.core.next_tick = (function next_tick(f){return reagent.impl.batching.next_tick.call(null,f);
@@ -222,9 +260,9 @@ var args = null;if (arguments.length > 1) {
   args = cljs.core.array_seq(Array.prototype.slice.call(arguments, 1),0);} 
 return partial__delegate.call(this,f,args);};
 partial.cljs$lang$maxFixedArity = 1;
-partial.cljs$lang$applyTo = (function (arglist__10917){
-var f = cljs.core.first(arglist__10917);
-var args = cljs.core.rest(arglist__10917);
+partial.cljs$lang$applyTo = (function (arglist__10978){
+var f = cljs.core.first(arglist__10978);
+var args = cljs.core.rest(arglist__10978);
 return partial__delegate(f,args);
 });
 partial.cljs$core$IFn$_invoke$arity$variadic = partial__delegate;

@@ -1,21 +1,14 @@
 (ns reagent.impl.util
   (:require [reagent.debug :refer-macros [dbg log]]
-            [reagent.impl.reactimport :as reactimport]
+            [reagent.interop :refer-macros [oget oset odo]]
             [clojure.string :as string]))
 
-(def is-client (not (nil? (try (.-document js/window)
-                               (catch js/Object e nil)))))
+(def is-client (and (exists? js/window)
+                    (-> js/window (oget :document) nil? not)))
 
-(def React reactimport/React)
+(def React js/React)
 
 ;;; Props accessors
-
-(def props "props")
-(def cljs-level "cljsLevel")
-(def cljs-argv "cljsArgv")
-
-(defn js-props [C]
-  (aget C props))
 
 (defn extract-props [v]
   (let [p (nth v 1 nil)]
@@ -27,18 +20,23 @@
     (if (> (count v) first-child)
       (subvec v first-child))))
 
-(defn get-argv [C]
-  (-> C (aget props) (aget cljs-argv)))
+(defn get-argv [c]
+  (oget c :props :argv))
 
-(defn get-props [C]
-  (-> C (aget props) (aget cljs-argv) extract-props))
+(defn get-props [c]
+  (-> (oget c :props :argv) extract-props))
 
-(defn get-children [C]
-  (-> C (aget props) (aget cljs-argv) extract-children))
+(defn get-children [c]
+  (-> (oget c :props :argv) extract-children))
 
-(defn reagent-component? [C]
-  (-> C get-argv nil? not))
+(defn reagent-component? [c]
+  (-> (oget c :props :argv) nil? not))
 
+(defn cached-react-class [c]
+  (oget c :cljsReactClass))
+
+(defn cache-react-class [c constructor]
+  (oset c :cljsReactClass constructor))
 
 ;; Misc utilities
 
@@ -110,6 +108,59 @@
       (assert (map? p1))
       (merge-style p1 (merge-class p1 (merge p1 p2))))))
 
+
+(declare ^:dynamic *always-update*)
+
+(def doc-node-type 9)
+(def react-id-name "data-reactid")
+
+(defn get-react-node [cont]
+  (when-not (nil? cont)
+    (if (== doc-node-type (oget cont :nodeType))
+      (oget cont :documentElement)
+      (oget cont :firstChild))))
+
+(defn get-root-id [cont]
+  (some-> (get-react-node cont)
+          (odo :getAttribute react-id-name)))
+
+(def roots (atom {}))
+
+(defn re-render-component [comp container]
+  (try
+    (odo React :renderComponent (comp) container)
+    (catch js/Object e
+      (do
+        (try
+          (odo React :unmountComponentAtNode container)
+          (catch js/Object e
+            (log e)))
+        (when-let [n (get-react-node container)]
+          (odo n :removeAttribute react-id-name)
+          (oset n :innerHTML ""))
+        (throw e)))))
+
+(defn render-component [comp container callback]
+  (odo React :renderComponent (comp) container
+       (fn []
+         (let [id (get-root-id container)]
+           (when-not (nil? id)
+             (swap! roots assoc id
+                    #(re-render-component comp container))))
+         (when-not (nil? callback)
+           (callback)))))
+
+(defn unmount-component-at-node [container]
+  (let [id (get-root-id container)]
+    (when-not (nil? id)
+      (swap! roots dissoc id)))
+  (odo React :unmountComponentAtNode container))
+
+(defn force-update-all []
+  (binding [*always-update* true]
+    (doseq [f (vals @roots)]
+      (f)))
+  "Updated")
 
 ;;; Helpers for shouldComponentUpdate
 

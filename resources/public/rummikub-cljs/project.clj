@@ -17,7 +17,8 @@
                  [org.clojure/core.async    "0.1.338.0-5c5012-alpha"]
                  [com.taoensso/sente        "1.1.0"]
                  [cljs-ajax "0.2.6"]
-                 [reagent "0.4.2"]
+;                 [reagent "0.4.2"]
+                 [whoops/reagent "0.4.4-alpha"]
                  ]
 
   :plugins [[lein-cljsbuild "1.0.3"]]

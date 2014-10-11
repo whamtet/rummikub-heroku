@@ -57,6 +57,14 @@
         ]
     (set-indices tiles new-tiles user)))
 
+(defn pick-up [tiles user]
+  (let [
+        [k {:keys [color value]}] (rand-nth (seq (util/value-filter (fn [{location :location}] (= location "pool")) tiles)))
+        top-row (filter (fn [{:keys [location i]}] (and (= location user) (zero? i))) (vals tiles))
+        new-j (inc (apply max (map :j top-row)))
+        ]
+    (assoc tiles k {:color color :value value :i 0 :j new-j :location user})))
+
 (defn get-tiles []
   (let [
         init-tiles
@@ -260,6 +268,13 @@
          (chsk-send! nil [:rummikub/tiles-update new-tiles]))
        :rummikub/pass-sound
        (chsk-send! nil [:rummikub/pass-sound nil])
+       :rummikub/pick-up
+       (let [
+             new-tiles (swap! tiles pick-up data)
+             new-tiles-event [:rummikub/tiles-update new-tiles]
+             user-id nil
+             ]
+         (chsk-send! user-id new-tiles-event))
        nil #_(println event)))))
 
 
@@ -274,9 +289,9 @@
     (make-server port)
     (println "server ready")))
 
-;; (defonce sente (sente-functions))
-;; (declare my-go)
-;; (if (bound? #'my-go)
-;;   (reset! my-go false))
-;; (def my-go (make-go))
-;; (defonce server (make-server 5000))
+(defonce sente (sente-functions))
+(declare my-go)
+(if (bound? #'my-go)
+  (reset! my-go false))
+(def my-go (make-go))
+(defonce server (make-server 5000))
