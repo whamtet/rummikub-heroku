@@ -213,6 +213,10 @@
           }
    value])
 
+
+(defn before-update [_ [_ k]]
+  (animate k))
+
 (m/defm table-box [k left top color tile value]
   {
    :component-will-update before-update
@@ -246,9 +250,6 @@
      (do
        (animate k points)
        (swap! to-animate dissoc k)))))
-
-(defn before-update [_ [_ k]]
-  (animate k))
 
 #_(defn before-unmount [x]
     (let [
@@ -375,7 +376,8 @@
                                  (fn [] (if (= @user-atom @current-player)
                                           (pass))))
                           (js/key "p"
-                                  #(chsk-send! [:rummikub/pick-up user])))
+                                  (fn []
+                                    (chsk-send! [:rummikub/pick-up (:user @user-atom)]))))
                           }
   [:div {
          :on-drag-over #(let [
