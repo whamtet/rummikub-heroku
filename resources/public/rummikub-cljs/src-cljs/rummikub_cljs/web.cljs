@@ -370,9 +370,13 @@
    ])
 
 (m/defm contents []
-  {:component-did-mount #(js/key "enter"
+  {:component-did-mount (fn []
+                          (js/key "enter"
                                  (fn [] (if (= @user-atom @current-player)
-                                          (pass))))}
+                                          (pass))))
+                          (js/key "p"
+                                  #(chsk-send! [:rummikub/pick-up user])))
+                          }
   [:div {
          :on-drag-over #(let [
                               x (.-clientX %)
