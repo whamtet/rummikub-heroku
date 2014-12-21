@@ -168,9 +168,11 @@
 (def show-chat? (atom true))
 (def dragging-tile (atom nil))
 
+(def pass-ints (concat (repeat 44 0) (range 6)))
+
 (defn play-sound []
   (doto
-    (js/document.getElementById "yourAudioTag") .load .play))
+    (->> pass-ints rand-nth (core/format "pass%s") js/document.getElementById) .load .play))
 
 (defn pass []
   (chsk-send! [:rummikub/pass-sound nil])
@@ -396,8 +398,10 @@
    (if (some (fn [{user :user}]
                (= user (:user @user-atom))) @users-atom)
      [stand])
-   [:audio {:id "yourAudioTag"}
-    [:source {:src "/pass.wav" :type "audio/wav"}]]])
+   (for [i (range 6)]
+     ^{:key (str "pass" i)}
+     [:audio {:id (str "pass" i)}
+      [:source {:src (core/format "/pass%s.wav" i) :type "audio/wav"}]])])
 
 (defn render []
   (reagent/render-component
