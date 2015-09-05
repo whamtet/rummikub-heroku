@@ -32,6 +32,6 @@
              {:output-to "rummikub_cljs.js"
               :output-dir "out"
               :pretty-print true
-              :optimizations :whitespace
+;              :optimizations :simple
               }}}}
   )

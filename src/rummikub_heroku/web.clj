@@ -63,7 +63,9 @@
         top-row (filter (fn [{:keys [location i]}] (and (= location user) (zero? i))) (vals tiles))
         new-j (inc (apply max (map :j top-row)))
         ]
-    (assoc tiles k {:color color :value value :i 0 :j new-j :location user})))
+    (if color
+      (assoc tiles k {:color color :value value :i 0 :j new-j :location user})
+      tiles)))
 
 (defn get-tiles []
   (let [
