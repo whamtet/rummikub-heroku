@@ -146,8 +146,8 @@
   (POST "/add-user" [username]
         (let [
               existing-user (some (fn [{user :user :as m}]
-                                (if (= user username)
-                                  m)) @users)
+                                    (if (= user username)
+                                      m)) @users)
               new-user {:user username :color (random-color)}
 
               new-tiles-event
@@ -289,9 +289,9 @@
     (make-server port)
     (println "server ready")))
 
-;; (defonce sente (sente-functions))
-;; (declare my-go)
-;; (if (bound? #'my-go)
-;;   (reset! my-go false))
-;; (def my-go (make-go))
-;; (defonce server (make-server 5000))
+;(defonce sente (sente-functions))
+;(declare my-go)
+;(if (bound? #'my-go)
+;  (reset! my-go false))
+;(def my-go (make-go))
+;(defonce server (make-server 5000))

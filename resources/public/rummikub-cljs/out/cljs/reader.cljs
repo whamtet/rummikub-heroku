@@ -112,7 +112,8 @@ nil if the end of stream has been reached")
 (defn- match-int
   [s]
   (let [groups (re-matches* int-pattern s)
-        zero (aget groups 2)]
+        ie8-fix  (aget groups 2)
+        zero     (if (= ie8-fix "") nil ie8-fix)]
     (if-not (nil? zero)
       0
       (let [a (cond
@@ -258,7 +259,7 @@ nil if the end of stream has been reached")
 
 (defn read-unmatched-delimiter
   [rdr ch]
-  (reader-error rdr "Unmached delimiter " ch))
+  (reader-error rdr "Unmatched delimiter " ch))
 
 (defn read-list
   [rdr _]
@@ -317,17 +318,20 @@ nil if the end of stream has been reached")
 
 (defn special-symbols [t not-found]
   (cond
-   (identical? t "nil") nil
-   (identical? t "true") true
-   (identical? t "false") false
-   :else not-found))
+    (identical? t "nil") nil
+    (identical? t "true") true
+    (identical? t "false") false
+    (identical? t "/") '/
+    :else not-found))
 
 (defn read-symbol
   [reader initch]
   (let [token (read-token reader initch)]
-    (if (gstring/contains token "/")
+    (if (and (gstring/contains token "/")
+             (not (== (.-length token) 1)))
       (symbol (subs token 0 (.indexOf token "/"))
-              (subs token (inc (.indexOf token "/")) (.-length token)))
+              (subs token (inc (.indexOf token "/"))
+                (.-length token)))
       (special-symbols token (symbol token)))))
 
 (defn read-keyword
@@ -439,9 +443,10 @@ nil if the end of stream has been reached")
 (defn read-string
   "Reads one object from the string s"
   [s]
+  (when-not (string? s)
+    (throw (js/Error. "Cannot read from non-string object.")))
   (let [r (push-back-reader s)]
     (read r false nil false)))
-
 
 ;; read instances
 
@@ -557,7 +562,7 @@ nil if the end of stream has been reached")
 (defn ^:private read-uuid
   [uuid]
   (if (string? uuid)
-    (UUID. uuid)
+    (cljs.core/uuid uuid)
     (reader-error nil "UUID literal expects a string as its representation.")))
 
 (def ^:dynamic *tag-table*

@@ -12,13 +12,12 @@
   :source-paths ["src-cljs" "src"]
 
   :dependencies [
-                 [org.clojure/clojure       "1.7.0-alpha2"] ; May use any v1.5.1+
-                 [org.clojure/clojurescript "0.0-2322"]
+                 [org.clojure/clojure       "1.7.0"] ; May use any v1.5.1+
+                 [org.clojure/clojurescript "1.7.48"]
                  [org.clojure/core.async    "0.1.338.0-5c5012-alpha"]
                  [com.taoensso/sente        "1.1.0"]
                  [cljs-ajax "0.2.6"]
-;                 [reagent "0.4.2"]
-                 [whoops/reagent "0.4.4-alpha"]
+                 [reagent "0.5.1-rc2"]
                  ]
 
   :plugins [[lein-cljsbuild "1.0.3"]]
@@ -33,7 +32,6 @@
              {:output-to "rummikub_cljs.js"
               :output-dir "out"
               :pretty-print true
-              :optimizations :none
-;              :optimizations :whitespace
+              :optimizations :whitespace
               }}}}
   )

@@ -1,3 +1,3 @@
-// Compiled by ClojureScript 0.0-2322
+// Compiled by ClojureScript 1.7.48 {}
 goog.provide('reagent.debug');
 goog.require('cljs.core');
