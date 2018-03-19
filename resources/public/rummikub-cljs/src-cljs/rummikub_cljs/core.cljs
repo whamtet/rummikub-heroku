@@ -1,11 +1,8 @@
 (ns rummikub-cljs.core
-  (:use
-        [cljs.reader :only [read-string]]
-        )
   (:require
+   [cljs.reader :refer [read-string]]
    [ajax.core :refer [GET POST]]
-   [reagent.core :as reagent :refer [atom]]
-   ))
+   [reagent.core :as reagent :refer [atom]]))
 
 (enable-console-print!)
 
@@ -22,8 +19,6 @@
   (to-num (val x)))
 (defn trim-val [x]
   (.trim (val x)))
-
-(defn p [x] (println (pr-str x)))
 
 (defn page [f & contents]
   (replace-with ($ "#content") (crate/html

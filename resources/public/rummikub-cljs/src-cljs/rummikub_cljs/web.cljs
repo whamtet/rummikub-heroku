@@ -1,8 +1,6 @@
 (ns rummikub-cljs.web
-  (:use
-   [cljs.reader :only [read-string]]
-   )
   (:require
+   [cljs.reader :refer [read-string]]
    [ajax.core :refer [GET POST]]
    [reagent.core :as reagent :refer [atom]]
    [rummikub-cljs.core :as core]
@@ -10,10 +8,7 @@
    [cljs.core.async :refer [<! >! put! close! chan]]
    )
   (:require-macros [cljs.core.async.macros :refer [go]]
-                   [rummikub-cljs.macros :as m])
-  )
-
-(def p #(-> % pr-str println))
+                   [rummikub-cljs.macros :as m]))
 
 (let [{:keys [chsk ch-recv send-fn state]}
       (sente/make-channel-socket! "/chsk" ; Note the same path as before
@@ -26,6 +21,12 @@
   )
 
 (def to-animate (atom {}))
+(def show-chat? (atom true))
+(def dragging-tile (atom nil))
+(def dragging-offset (atom nil))
+(def current-chat (atom ""))
+(def drag-coords (atom []))
+(def show-users? (atom false))
 
 (go
  (while true
@@ -85,8 +86,6 @@
         ]
     (p val)))
 
-(def current-chat (atom ""))
-
 (defn new-chat []
   (let [
         val (-> js/document (.getElementById "new-chat") .-value)
@@ -98,7 +97,7 @@
 
 (defn scroll-to-bottom [this]
   (let [
-        node (.getDOMNode this)
+        node (js/ReactDOM.findDOMNode this)
         ]
     (set! (.-scrollTop node) (.-scrollHeight node))))
 
@@ -106,10 +105,8 @@
   {:component-did-update scroll-to-bottom
    :component-did-mount scroll-to-bottom}
   [:div {:style {:overflow-y "scroll"
-                 :height "80%"
-                 }
-         :class "center"
-         }
+                 :height "80%"}
+         :class "center"}
    [:h4 "Chat Box"]
    (map-indexed
     (fn [i {:keys [user color content]}]
@@ -164,9 +161,6 @@
           :border "1px solid black"}
          :on-click #(reset! show-chat? true)}
    "X"])
-
-(def show-chat? (atom true))
-(def dragging-tile (atom nil))
 
 (def pass-ints (concat (repeat 44 0) (range 6)))
 
@@ -253,12 +247,6 @@
        (animate k points)
        (swap! to-animate dissoc k)))))
 
-#_(defn before-unmount [x]
-    (let [
-          [color value] (-> x .getDOMNode .-id (.split "-"))
-          ]
-      (animate (str color " " value))))
-
 (defn table []
   [:div {:style
          {:margin margin
@@ -272,8 +260,9 @@
          :on-drag-enter #(.preventDefault %)
          :on-drop #(let [
                          [k tile] @dragging-tile
-                         x (- (.-clientX %) 17)
-                         y (- (.-clientY %) 15)
+                         [offset-x offset-y] @dragging-offset
+                         x (- (.-clientX %) 15 offset-x)
+                         y (- (.-clientY %) 10 offset-y)
                          new-tile (assoc tile :left x :top y :location "table")
                          drag-coords (conj @drag-coords "table")
                          event [:rummikub/tile-update [k new-tile drag-coords (:user @user-atom)]]
@@ -291,14 +280,18 @@
    [turn-indicator]
    ])
 
-(def drag-coords (atom []))
-
 (defn drag-start [k tile location]
-  #(do
+  #(let [
+          {:strs [top left]} (-> % .-target js/$ .offset js->clj)
+          click-left (.-pageX %)
+          click-y (.-pageY %)
+          offset-x (- click-left left)
+          offset-y (- click-y top)
+          ]
      (-> % .-dataTransfer (.setData "text/html" ""))
      (reset! dragging-tile [k tile])
-     (reset! drag-coords [location])
-     ))
+     (reset! dragging-offset [offset-x offset-y])
+     (reset! drag-coords [location])))
 
 (defn stand []
   (let [
@@ -345,8 +338,6 @@
                :on-click #(chsk-send! [:rummikub/sort-tiles user])
                }]]]
     ))
-
-(def show-users? (atom false))
 
 (defn users-box []
   [:div {:style {:width "28%" :height "90%"

@@ -6,7 +6,7 @@
    [clojure.java.io :as io]
    [ring.middleware.stacktrace :as trace]
    [ring.middleware.session :as session]
-   [ring.middleware.session.cookie :as cookie]
+   [ring.middleware.session.memory :as memory]
    [ring.adapter.jetty :as jetty]
    [ring.middleware.basic-authentication :as basic]
    [cemerick.drawbridge :as drawbridge]
@@ -15,15 +15,12 @@
    [routes.index :as index]
    [environ.core :refer [env]]
    [taoensso.sente :as sente]
-   )
+   [taoensso.sente.server-adapters.http-kit      :refer (get-sch-adapter)]
+   [ring.util.response :as response])
   (:require [org.httpkit.server :as httpkit])
   (:require [clojure.core.async :as async :refer [<! >! put! close! go chan go-loop]]))
 
 (declare ring-ajax-get-or-ws-handshake ring-ajax-post ch-chsk chsk-send! connected-uids)
-
-(require '[ring.util.response :as response])
-
-(def p #(-> % pr-str println))
 
 (def chats (atom []))
 
@@ -136,13 +133,11 @@
 
 (defroutes app
   (GET "/" {{user :user} :session}
-       (index/blank-page "web" {
-                                "user_atom" (pr-str user)
+       (index/blank-page "web" {"user_atom" (pr-str user)
                                 "chat_atom" (pr-str @chats)
                                 "tiles_atom" (pr-str @tiles)
                                 "current_player" (pr-str (current-user))
-                                "users_atom" (pr-str @users)
-                                }))
+                                "users_atom" (pr-str @users)}))
   (GET "/reset" []
        (assoc (response/redirect "/") :session nil))
   (POST "/add-user" [username]
@@ -156,7 +151,7 @@
               (if-not existing-user
                 [:rummikub/tiles-update (swap! tiles allocate-to-player new-user)])
 
-              user-id nil
+              user-id :sente/all-users-without-uid
               new-user-event (if (empty? @users) [:rummikub/new-user new-user])
 
               update-users-event
@@ -190,17 +185,18 @@
   (ANY "*" []
        (route/not-found (slurp (io/resource "404.html")))))
 
+(defonce session-map (atom {}))
+
 (defn wrap-app [app]
-  ;; TODO: heroku config:add SESSION_SECRET=$RANDOM_16_CHARS
-  (let [store (cookie/cookie-store {:key (env :session-secret)})]
+  (let [store (memory/memory-store session-map)]
     (-> app
         wrap-edn/wrap-edn-params
-        (site {:session {:store store}}))))
+        (site {:session {:store store :cookie-attrs {:max-age (* 3600 24 10)}}}))))
 
 (defn sente-functions []
   (let [{:keys [ch-recv send-fn ajax-post-fn ajax-get-or-ws-handshake-fn
                 connected-uids]}
-        (sente/make-channel-socket! {})]
+        (sente/make-channel-socket! (get-sch-adapter) {})]
     (println "defining functions")
     (def ring-ajax-post                ajax-post-fn)
     (def ring-ajax-get-or-ws-handshake ajax-get-or-ws-handshake-fn)
@@ -221,7 +217,7 @@
              new-chat data
              new-chats (swap! chats conj new-chat)
              new-chats-event [:rummikub/chat-update new-chats]
-             user-id nil
+             user-id :sente/all-users-without-uid
              ]
          (chsk-send! user-id new-chats-event)
          )
@@ -230,14 +226,14 @@
              [k new-tile drag-coords user] data
              new-tiles (swap! tiles assoc k new-tile)
              new-tiles-event [:rummikub/tiles-update2 [new-tiles k drag-coords user]]
-             user-id nil
+             user-id :sente/all-users-without-uid
              ]
          (chsk-send! user-id new-tiles-event))
        :rummikub/sort-tiles
        (let [
              new-tiles (swap! tiles sort-tiles data)
              new-tiles-event [:rummikub/tiles-update new-tiles]
-             user-id nil
+             user-id :sente/all-users-without-uid
              ]
          (chsk-send! user-id new-tiles-event))
        :rummikub/tile-insert
@@ -245,7 +241,7 @@
              [k new-tile i j user drag-coords] data
              new-tiles (swap! tiles insert-tile k new-tile i j user)
              new-tiles-event [:rummikub/tiles-update2 [new-tiles k drag-coords user]]
-             user-id nil
+             user-id :sente/all-users-without-uid
              ]
          (chsk-send! user-id new-tiles-event))
        :rummikub/new-user
@@ -258,7 +254,7 @@
              new-users (swap! users #(filterv (fn [x] (not= x old-user)) %))
              new-tiles (swap! tiles revert-tiles old-user)
              new-user (current-user)
-             user-id nil
+             user-id :sente/all-users-without-uid
              ]
          (chsk-send! user-id [:rummikub/new-user new-user])
          (chsk-send! user-id [:rummikub/users-update new-users])
@@ -274,14 +270,14 @@
        (let [
              new-tiles (swap! tiles pick-up data)
              new-tiles-event [:rummikub/tiles-update new-tiles]
-             user-id nil
+             user-id :sente/all-users-without-uid
              ]
          (chsk-send! user-id new-tiles-event))
-       nil #_(println event)))))
+       nil))))
 
 
 (defn make-server [port]
-  (httpkit/run-server #_jetty/run-jetty (wrap-app #'app) {:port port :join? false}))
+  (httpkit/run-server (wrap-app #'app) {:port port :join? false}))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))
