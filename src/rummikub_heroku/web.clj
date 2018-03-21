@@ -175,8 +175,8 @@
               ]
           (reset! users users-data)
           (reset! tiles tiles-data)
-          (chsk-send! nil [:rummikub/users-update users-data])
-          (chsk-send! nil [:rummikub/tiles-update tiles-data])
+          (chsk-send! :sente/all-users-without-uid [:rummikub/users-update users-data])
+          (chsk-send! :sente/all-users-without-uid [:rummikub/tiles-update tiles-data])
           (response/response "ok")))
 
   (GET  "/chsk" req (ring-ajax-get-or-ws-handshake req))
@@ -247,7 +247,7 @@
        :rummikub/new-user
        (do
          (swap! user-index inc)
-         (chsk-send! nil [:rummikub/new-user (current-user)]))
+         (chsk-send! :sente/all-users-without-uid [:rummikub/new-user (current-user)]))
        :rummikub/remove-user
        (let [
              old-user data
@@ -263,9 +263,11 @@
        (let [
              new-tiles (reset! tiles (get-tiles))
              ]
-         (chsk-send! nil [:rummikub/tiles-update new-tiles]))
+         (chsk-send! :sente/all-users-without-uid [:rummikub/tiles-update new-tiles]))
        :rummikub/pass-sound
-       (chsk-send! nil [:rummikub/pass-sound nil])
+       (chsk-send! :sente/all-users-without-uid [:rummikub/pass-sound nil])
+       :rummikub/rummikub!
+       (chsk-send! :sente/all-users-without-uid [:rummikub/rummikub! nil])
        :rummikub/pick-up
        (let [
              new-tiles (swap! tiles pick-up data)

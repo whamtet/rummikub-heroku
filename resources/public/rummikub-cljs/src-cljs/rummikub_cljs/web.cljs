@@ -27,6 +27,8 @@
 (def current-chat (atom ""))
 (def drag-coords (atom []))
 (def show-users? (atom false))
+(def num-sounds 15)
+(def num-sounds-win 7)
 
 (go
  (while true
@@ -62,6 +64,8 @@
            (reset! users-atom data)
            :rummikub/pass-sound
            (play-sound)
+           :rummikub/rummikub!
+           (play-sound-win)
            (println event)))
        (println event)))))
 
@@ -162,35 +166,46 @@
          :on-click #(reset! show-chat? true)}
    "X"])
 
-(def pass-ints (concat (repeat 44 0) (range 6)))
+(def pass-ints (concat (repeat 85 0) (range num-sounds)))
 
 (defn play-sound []
   (doto
     (->> pass-ints rand-nth (core/format "pass%s") js/document.getElementById) .load .play))
 
+(defn play-sound-win []
+  (doto
+    (->> num-sounds-win rand-int (core/format "win%s") js/document.getElementById) .load .play))
+
 (defn pass []
   (chsk-send! [:rummikub/pass-sound nil])
   (chsk-send! [:rummikub/new-user nil]))
+
+(defn rummikub []
+  (chsk-send! [:rummikub/rummikub! nil]))
 
 (defn turn-indicator []
   (let [
         {this-player :user} @user-atom
         {:keys [user color]} @current-player
+        locations (map :location (vals @tiles-atom))
+        can-rummikub? (empty? (filter #(= this-player %) locations))
         ]
     [:div {:style
-           {
-            :border "1px solid black"
+           {:border "1px solid black"
             :position "absolute"
             :bottom 0
             :right 0
             :color (color-str color)
-            :height "1.5em"
-            }}
+            :height "1.5em"}}
      (core/format "%s's Turn " user)
-     (if (= this-player user)
+     (when (= this-player user)
        [:input {:type "button"
                 :value "End Turn"
-                :on-click pass}])]))
+                :on-click pass}])
+     (when can-rummikub?
+       [:input {:type "button"
+                :value "Rummikub!"
+                :on-click rummikub}])]))
 
 (defn stand-box [k i j tile user value color]
   [:span {:style
@@ -277,8 +292,7 @@
      ^{:key (str "tablized" k)}
      [table-box k left top color tile value]
      )
-   [turn-indicator]
-   ])
+   [turn-indicator]])
 
 (defn drag-start [k tile location]
   #(let [
@@ -360,8 +374,7 @@
             :on-click #(chsk-send! [:rummikub/new-game nil])}]
    [:input {:type "button"
             :value "Done"
-            :on-click #(reset! show-users? false)}]
-   ])
+            :on-click #(reset! show-users? false)}]])
 
 (m/defm contents []
   {:component-did-mount (fn []
@@ -389,10 +402,14 @@
    (if (some (fn [{user :user}]
                (= user (:user @user-atom))) @users-atom)
      [stand])
-   (for [i (range 6)]
+   (for [i (range num-sounds)]
      ^{:key (str "pass" i)}
      [:audio {:id (str "pass" i)}
-      [:source {:src (core/format "/pass%s.wav" i) :type "audio/wav"}]])])
+      [:source {:src (core/format "/pass%s.wav" i) :type "audio/wav"}]])
+   (for [i (range num-sounds-win)]
+     ^{:key (str "win" i)}
+     [:audio {:id (str "win" i)}
+      [:source {:src (core/format "/win%s.wav" i) :type "audio/wav"}]])])
 
 (defn render []
   (reagent/render-component
