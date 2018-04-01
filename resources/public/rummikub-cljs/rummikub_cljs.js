@@ -48971,12 +48971,12 @@ taoensso.sente.server_event_msg_QMARK_ = function(a) {
 taoensso.sente.put_server_event_msg_GT_ch_recv_BANG_ = function(a, b) {
   var c = null != b && (b.cljs$lang$protocol_mask$partition0$ & 64 || cljs.core.PROTOCOL_SENTINEL === b.cljs$core$ISeq$) ? cljs.core.apply.call(null, cljs.core.hash_map, b) : b, d = cljs.core.get.call(null, c, new cljs.core.Keyword(null, "event", "event", 301435442)), e = cljs.core.get.call(null, c, new cljs.core.Keyword(null, "?reply-fn", "?reply-fn", -1479510592)), f = taoensso.sente.as_event.call(null, d), g = cljs.core.nth.call(null, f, 0, null), h = cljs.core.nth.call(null, f, 1, null), k = 
   cljs.core.merge.call(null, c, new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null, "event", "event", 301435442), f, new cljs.core.Keyword(null, "?reply-fn", "?reply-fn", -1479510592), e, new cljs.core.Keyword(null, "id", "id", -1388402092), g, new cljs.core.Keyword(null, "?data", "?data", -9471433), h], null));
-  return cljs.core.not.call(null, taoensso.sente.server_event_msg_QMARK_.call(null, k)) ? taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 187, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, 
+  return cljs.core.not.call(null, taoensso.sente.server_event_msg_QMARK_.call(null, k)) ? taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 187, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, 
   w) {
     return function() {
       return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Bad ev-msg: %s", h], null);
     };
-  }(f, g, h, f, k, b, c, c, d, e), null), null, 832417282) : cljs.core.async.put_BANG_.call(null, a, k);
+  }(f, g, h, f, k, b, c, c, d, e), null), null, -888238927) : cljs.core.async.put_BANG_.call(null, a, k);
 };
 taoensso.sente.cb_error_QMARK_ = function(a) {
   return (new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword("chsk", "closed", "chsk/closed", -922855264), null, new cljs.core.Keyword("chsk", "error", "chsk/error", -984175439), null, new cljs.core.Keyword("chsk", "timeout", "chsk/timeout", -319776489), null], null), null)).call(null, a);
@@ -48991,19 +48991,19 @@ taoensso.sente.unpack = function(a, b) {
       return taoensso.sente.interfaces.unpack.call(null, a, d);
     } catch (l) {
       var b = l;
-      taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "debug", "debug", -1608172596), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 208, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c) {
+      taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "debug", "debug", -1608172596), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 208, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c) {
         return function() {
           return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Bad package: %s (%s)", c, a], null);
         };
-      }(b, c, d), null), null, 643827725);
+      }(b, c, d), null), null, -1056806638);
       return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("chsk", "bad-package", "chsk/bad-package", 501893679), d], null);
     }
   }(), f = c ? e : new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [e, null], null), g = cljs.core.nth.call(null, f, 0, null), h = cljs.core.nth.call(null, f, 1, null), k = cljs.core._EQ_.call(null, 0, h) ? new cljs.core.Keyword(null, "ajax-cb", "ajax-cb", -807060321) : h;
-  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 214, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, c, d, e, f, g, h) {
+  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 214, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, c, d, e, f, g, h) {
     return function() {
       return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Unpacking: %s -\x3e %s", b, new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [f, h], null)], null);
     };
-  }(c, d, e, f, g, h, k), null), null, 1501134453);
+  }(c, d, e, f, g, h, k), null), null, 235307268);
   return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [g, k], null);
 };
 taoensso.sente.pack = function(a) {
@@ -49018,22 +49018,22 @@ taoensso.sente.pack = function(a) {
 };
 taoensso.sente.pack.cljs$core$IFn$_invoke$arity$2 = function(a, b) {
   var c = ["-", cljs.core.str.cljs$core$IFn$_invoke$arity$1(taoensso.sente.interfaces.pack.call(null, a, b))].join("");
-  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 221, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a) {
+  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 221, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a) {
     return function() {
       return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Packing (unwrapped): %s -\x3e %s", b, a], null);
     };
-  }(c), null), null, 1886093621);
+  }(c), null), null, -739619584);
   return c;
 };
 taoensso.sente.pack.cljs$core$IFn$_invoke$arity$3 = function(a, b, c) {
   c = cljs.core._EQ_.call(null, c, new cljs.core.Keyword(null, "ajax-cb", "ajax-cb", -807060321)) ? 0 : c;
   b = cljs.core.truth_(c) ? new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [b, c], null) : new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [b], null);
   a = ["+", cljs.core.str.cljs$core$IFn$_invoke$arity$1(taoensso.sente.interfaces.pack.call(null, a, b))].join("");
-  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 230, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c) {
+  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 230, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c) {
     return function() {
       return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Packing (wrapped): %s -\x3e %s", b, c], null);
     };
-  }(c, b, a), null), null, -2099309074);
+  }(c, b, a), null), null, 1768944375);
   return a;
 };
 taoensso.sente.pack.cljs$lang$maxFixedArity = 3;
@@ -49261,11 +49261,11 @@ taoensso.sente.make_channel_socket_server_BANG_.cljs$core$IFn$_invoke$arity$vari
       var A = function(A, F, z) {
         var D = cljs.core.nth.call(null, z, 0, null), E = null != D && (D.cljs$lang$protocol_mask$partition0$ & 64 || cljs.core.PROTOCOL_SENTINEL === D.cljs$core$ISeq$) ? cljs.core.apply.call(null, cljs.core.hash_map, D) : D, B = cljs.core.get.call(null, E, new cljs.core.Keyword(null, "flush?", "flush?", -108887231));
         A = cljs.core._EQ_.call(null, A, new cljs.core.Keyword("sente", "all-users-without-uid", "sente/all-users-without-uid", -42979578)) ? new cljs.core.Keyword("taoensso.sente", "nil-uid", "taoensso.sente/nil-uid", -2111603486) : A;
-        var C = taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 401, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, A, z, D, E, B, C) {
+        var C = taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 401, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, A, z, D, E, B, C) {
           return function() {
             return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Chsk send: (-\x3euid %s) %s", a, F], null);
           };
-        }(A, z, D, E, E, B, a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y), null), null, -247724240);
+        }(A, z, D, E, E, B, a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y), null), null, -403831039);
         if (!cljs.core.truth_(A)) {
           throw Error(["Assert failed: ", cljs.core.str.cljs$core$IFn$_invoke$arity$1("Support for sending to `nil` user-ids has been REMOVED. Please send to `:sente/all-users-without-uid` instead."), "\nuid"].join(""));
         }
@@ -49284,12 +49284,12 @@ taoensso.sente.make_channel_socket_server_BANG_.cljs$core$IFn$_invoke$arity$vari
               cljs.core.vector_QMARK_.call(null, M) || taoensso.truss.impl._invar_violation_BANG_.call(null, !0, "taoensso.sente", 428, "(vector? buffered-evs)", M, null, null);
               cljs.core.set_QMARK_.call(null, N) || taoensso.truss.impl._invar_violation_BANG_.call(null, !0, "taoensso.sente", 429, "(set? ev-uuids)", N, null, null);
               var I = taoensso.sente.pack.call(null, m, M);
-              taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 432, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, A, z, F, D, E, B, C, G, J, L, K, H, 
+              taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 432, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, A, z, F, D, E, B, C, G, J, L, K, H, 
               M, N, I, O) {
                 return function() {
                   return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["buffered-evs-ppstr: %s", a], null);
                 };
-              }(I, H, M, N, H, H, a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, A, z, F, D, E, B, C, G, J, K), null), null, 793048123);
+              }(I, H, M, N, H, H, a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, A, z, F, D, E, B, C, G, J, K), null), null, -2044564804);
               L = L instanceof cljs.core.Keyword ? L.fqn : null;
               switch(L) {
                 case "ws":
@@ -49305,11 +49305,11 @@ taoensso.sente.make_channel_socket_server_BANG_.cljs$core$IFn$_invoke$arity$vari
           };
         }(A, C, G, J, K, z, D, E, E, B, a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y);
         if (cljs.core._EQ_.call(null, F, new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("chsk", "close", "chsk/close", 1840295819)], null))) {
-          taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "debug", "debug", -1608172596), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 441, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, A, z, F, D, E, B, C, G, J, L, K) {
+          taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "debug", "debug", -1608172596), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 441, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, A, z, F, D, E, B, C, G, J, L, K) {
             return function() {
               return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Chsk closing (client may reconnect): %s", a], null);
             };
-          }(A, C, G, J, K, L, z, D, E, E, B, a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y), null), null, 533445883);
+          }(A, C, G, J, K, L, z, D, E, E, B, a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y), null), null, -208440601);
           cljs.core.truth_(B) && (L.call(null, new cljs.core.Keyword(null, "ws", "ws", 86841443)), L.call(null, new cljs.core.Keyword(null, "ajax", "ajax", 814345549)));
           z = cljs.core.seq.call(null, cljs.core.vals.call(null, cljs.core.get_in.call(null, cljs.core.deref.call(null, d), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "ws", "ws", 86841443), A], null))));
           D = null;
@@ -49554,12 +49554,12 @@ taoensso.sente.make_channel_socket_server_BANG_.cljs$core$IFn$_invoke$arity$vari
           var B = cljs.core.get.call(null, A, new cljs.core.Keyword(null, "params", "params", 710516235)), C = cljs.core.get.call(null, B, new cljs.core.Keyword(null, "ppstr", "ppstr", 1557495252)), G = cljs.core.get.call(null, B, new cljs.core.Keyword(null, "client-id", "client-id", -464622140)), J = taoensso.sente.unpack.call(null, a, C), L = cljs.core.nth.call(null, J, 0, null), H = cljs.core.nth.call(null, J, 1, null), K = function() {
             return function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, A, z, F, B, C, G, J, H, L) {
               return function(K) {
-                return cljs.core.truth_(cljs.core.compare_and_set_BANG_.call(null, a, !1, !0)) ? (taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 510, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, 
+                return cljs.core.truth_(cljs.core.compare_and_set_BANG_.call(null, a, !1, !0)) ? (taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 510, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, 
                 f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, A, z, F, D, E, B, C, G, J) {
                   return function() {
                     return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Chsk send (ajax post reply): %s", K], null);
                   };
-                }(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, A, z, F, B, C, G, J, H, L), null), null, -591168502), taoensso.sente.interfaces.sch_send_BANG_.call(null, D, E, taoensso.sente.pack.call(null, h, K))) : null;
+                }(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, A, z, F, B, C, G, J, H, L), null), null, 1189162606), taoensso.sente.interfaces.sch_send_BANG_.call(null, D, E, taoensso.sente.pack.call(null, h, K))) : null;
               };
             }(cljs.core.atom.call(null, !1), B, C, G, J, L, H, a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, F);
           }();
@@ -49670,11 +49670,11 @@ taoensso.sente.make_channel_socket_server_BANG_.cljs$core$IFn$_invoke$arity$vari
         }();
       }(F, D, E, B, C, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, H, S), J = function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, F, D, E, B, C, G, H) {
         return function(J, L) {
-          taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 555, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G) {
+          taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 555, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G) {
             return function() {
               return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, ["send-handshake!"], null);
             };
-          }(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, F, D, E, B, C, G, H), null), null, -1309207808);
+          }(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, F, D, E, B, C, G, H), null), null, -247817625);
           var K = G.call(null, A);
           K = null == K ? new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("chsk", "handshake", "chsk/handshake", 64910686), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [e, d], null)], null) : new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("chsk", "handshake", "chsk/handshake", 64910686), new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, 
           [e, d, K], null)], null);
@@ -49682,21 +49682,21 @@ taoensso.sente.make_channel_socket_server_BANG_.cljs$core$IFn$_invoke$arity$vari
         };
       }(F, D, E, B, C, G, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, H, S);
       if (clojure.string.blank_QMARK_.call(null, E)) {
-        throw taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "error", "error", -978969032), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 566, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, F, D, E, B, C, G, H, J, K) {
+        throw taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "error", "error", -978969032), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 566, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, F, D, E, B, C, G, H, J, K) {
           return function() {
             return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [[cljs.core.str.cljs$core$IFn$_invoke$arity$1(a), ": %s"].join(""), A], null);
           };
-        }("Client's Ring request doesn't have a client id. Does your server have the necessary keyword Ring middleware (`wrap-params` \x26 `wrap-keyword-params`)?", F, D, E, B, C, G, J, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, H, S), null), null, 1118273750), cljs.core.ex_info.call(null, "Client's Ring request doesn't have a client id. Does your server have the necessary keyword Ring middleware (`wrap-params` \x26 `wrap-keyword-params`)?", new cljs.core.PersistentArrayMap(null, 
+        }("Client's Ring request doesn't have a client id. Does your server have the necessary keyword Ring middleware (`wrap-params` \x26 `wrap-keyword-params`)?", F, D, E, B, C, G, J, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, H, S), null), null, 1075957241), cljs.core.ex_info.call(null, "Client's Ring request doesn't have a client id. Does your server have the necessary keyword Ring middleware (`wrap-params` \x26 `wrap-keyword-params`)?", new cljs.core.PersistentArrayMap(null, 
         1, [new cljs.core.Keyword(null, "ring-req", "ring-req", -747861961), A], null));
       }
       return taoensso.sente.interfaces.ring_req__GT_server_ch_resp.call(null, a, A, new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null, "on-open", "on-open", -1391088163), function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H) {
         return function(J, K) {
           if (cljs.core.truth_(K)) {
-            var L = taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 575, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, J) {
+            var L = taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 575, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, J) {
               return function() {
                 return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, ["New WebSocket channel: %s (%s)", e, a], null);
               };
-            }(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H), null), null, -1907628390), M = r.call(null, new cljs.core.Keyword(null, "ws", "ws", 86841443), e, c, J), N = (new cljs.core.Keyword(null, "udt", "udt", 2011712751)).cljs$core$IFn$_invoke$arity$1(M);
+            }(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H), null), null, 916520608), M = r.call(null, new cljs.core.Keyword(null, "ws", "ws", 86841443), e, c, J), N = (new cljs.core.Keyword(null, "udt", "udt", 2011712751)).cljs$core$IFn$_invoke$arity$1(M);
             cljs.core.truth_(q.call(null, new cljs.core.Keyword(null, "ws", "ws", 86841443), e)) && f.call(null, new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("chsk", "uidport-open", "chsk/uidport-open", 1685786954), e], null));
             g.call(null, J, K);
             var I = A;
@@ -49790,11 +49790,11 @@ taoensso.sente.make_channel_socket_server_BANG_.cljs$core$IFn$_invoke$arity$vari
             }
             return null;
           }
-          L = taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 604, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H) {
+          L = taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 604, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H) {
             return function() {
               return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, ["New Ajax handshake/poll: %s (%s)", e, a], null);
             };
-          }(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H), null), null, 695574815);
+          }(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H), null), null, -2014092463);
           M = r.call(null, new cljs.core.Keyword(null, "ajax", "ajax", 814345549), e, c, J);
           N = (new cljs.core.Keyword(null, "udt", "udt", 2011712751)).cljs$core$IFn$_invoke$arity$1(M);
           var S = function() {
@@ -49893,11 +49893,11 @@ taoensso.sente.make_channel_socket_server_BANG_.cljs$core$IFn$_invoke$arity$vari
           var M = cljs.core.nth.call(null, K, 0, null), N = cljs.core.nth.call(null, K, 1, null);
           return f.call(null, M, cljs.core.truth_(N) ? function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H, K, M, N) {
             return function(I) {
-              taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 634, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H, J, K, L) {
+              taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 634, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H, J, K, L) {
                 return function() {
                   return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Chsk send (ws reply): %s", I], null);
                 };
-              }(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H, K, M, N), null), null, -2145278483);
+              }(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H, K, M, N), null), null, -703426460);
               return taoensso.sente.interfaces.sch_send_BANG_.call(null, J, L, taoensso.sente.pack.call(null, m, I, c));
             };
           }(K, M, N, a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H) : null);
@@ -49905,11 +49905,11 @@ taoensso.sente.make_channel_socket_server_BANG_.cljs$core$IFn$_invoke$arity$vari
       }(F, D, E, B, C, G, J, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, H, S), new cljs.core.Keyword(null, "on-close", "on-close", -761178394), function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H) {
         return function(J, K, L) {
           J = cljs.core.truth_(K) ? new cljs.core.Keyword(null, "ws", "ws", 86841443) : new cljs.core.Keyword(null, "ajax", "ajax", 814345549);
-          L = taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 643, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H, J) {
+          L = taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 643, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H, J) {
             return function() {
               return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, ["%s channel closed: %s (%s)", cljs.core.truth_(K) ? "WebSocket" : "Ajax", f, b], null);
             };
-          }(J, a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H), null), null, -825536922);
+          }(J, a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H), null), null, -1937667872);
           var M = r.call(null, J, e, c, null), N = (new cljs.core.Keyword(null, "udt", "udt", 2011712751)).cljs$core$IFn$_invoke$arity$1(M), I = cljs.core.async.chan.call(null, 1);
           cljs.core.async.impl.dispatch.run.call(null, function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H, J, K, L, M, N) {
             return function() {
@@ -49997,7 +49997,7 @@ taoensso.sente.make_channel_socket_server_BANG_.cljs$core$IFn$_invoke$arity$vari
                             return new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, ["close-timeout: %s %s %s %s", k, u, p, new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core._EQ_.call(null, c, n), c, n], null)], null);
                           };
                         }(T, R, Q, Q, R, T, O, a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H, J, K, L, M, N);
-                      }(), P = new cljs.core.Delay(P, null), P = taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "debug", "debug", -1608172596), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 657, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), P, null, -448219218), I[2] = P, I[1] = 5, new cljs.core.Keyword(null, "recur", 
+                      }(), P = new cljs.core.Delay(P, null), P = taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "debug", "debug", -1608172596), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 657, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), P, null, -351811582), I[2] = P, I[1] = 5, new cljs.core.Keyword(null, "recur", 
                       "recur", -437573268);
                     }
                     if (12 === O) {
@@ -50062,11 +50062,11 @@ taoensso.sente.make_channel_socket_server_BANG_.cljs$core$IFn$_invoke$arity$vari
         };
       }(F, D, E, B, C, G, J, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, H, S), new cljs.core.Keyword(null, "on-error", "on-error", 1728533530), function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H) {
         return function(J, K, I) {
-          return taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "error", "error", -978969032), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 679, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H) {
+          return taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "error", "error", -978969032), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 679, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H) {
             return function() {
               return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, ["ring-req-\x3eserver-ch-resp error: %s (%s)", I, e, a], null);
             };
-          }(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H), null), null, 1628796920);
+          }(a, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, A, F, D, E, B, C, G, H), null), null, -1097452706);
         };
       }(F, D, E, B, C, G, J, b, c, d, e, f, g, h, k, l, m, n, p, r, q, t, u, v, w, x, y, z, H, S)], null));
     };
@@ -50079,9 +50079,9 @@ taoensso.sente.make_channel_socket_server_BANG_.cljs$lang$applyTo = function(a) 
   return taoensso.sente.make_channel_socket_server_BANG_.cljs$core$IFn$_invoke$arity$variadic(b, a);
 };
 taoensso.sente.send_buffered_server_evs_GT_ws_clients_BANG_ = function(a, b, c, d) {
-  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 685, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
+  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 685, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
     return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["send-buffered-server-evs\x3ews-clients!: %s", c], null);
-  }, null), null, 751790921);
+  }, null), null, -1175554169);
   for (var e = cljs.core.seq.call(null, cljs.core.get_in.call(null, cljs.core.deref.call(null, a), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "ws", "ws", 86841443), b], null))), f = null, g = 0, h = 0;;) {
     if (h < g) {
       var k = cljs.core._nth.call(null, f, h);
@@ -50102,9 +50102,9 @@ taoensso.sente.send_buffered_server_evs_GT_ws_clients_BANG_ = function(a, b, c, 
   }
 };
 taoensso.sente.send_buffered_server_evs_GT_ajax_clients_BANG_ = function(a, b, c) {
-  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 695, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
+  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 695, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
     return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["send-buffered-server-evs\x3eajax-clients!: %s", c], null);
-  }, null), null, 2096066105);
+  }, null), null, -460625118);
   var d = new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [90, 180, 360, 720, 1440], null), e = cljs.core.keys.call(null, cljs.core.get_in.call(null, cljs.core.deref.call(null, a), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "ajax", "ajax", 814345549), b], null)));
   if (cljs.core.empty_QMARK_.call(null, e)) {
     return null;
@@ -50334,16 +50334,16 @@ taoensso.sente.chsk_send_BANG_.cljs$core$IFn$_invoke$arity$4 = function(a, b, c,
   return taoensso.sente.chsk_send_BANG_.call(null, a, b, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null, "timeout-ms", "timeout-ms", 754221406), c, new cljs.core.Keyword(null, "cb", "cb", 589947841), d], null));
 };
 taoensso.sente.chsk_send_BANG_.cljs$core$IFn$_invoke$arity$3 = function(a, b, c) {
-  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 772, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
+  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 772, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
     return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Chsk send: (%s) %s", cljs.core.assoc.call(null, c, new cljs.core.Keyword(null, "cb", "cb", 589947841), cljs.core.boolean$.call(null, (new cljs.core.Keyword(null, "cb", "cb", 589947841)).cljs$core$IFn$_invoke$arity$1(c))), b], null);
-  }, null), null, 1282210593);
+  }, null), null, 1234586890);
   return taoensso.sente._chsk_send_BANG_.call(null, a, b, c);
 };
 taoensso.sente.chsk_send_BANG_.cljs$lang$maxFixedArity = 4;
 taoensso.sente.chsk_send__GT_closed_BANG_ = function(a) {
-  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 777, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
+  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 777, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
     return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Chsk send against closed chsk."], null);
-  }, null), null, -1815506386);
+  }, null), null, 1669894231);
   cljs.core.truth_(a) && a.call(null, new cljs.core.Keyword("chsk", "closed", "chsk/closed", -922855264));
   return !1;
 };
@@ -50429,9 +50429,9 @@ taoensso.sente.cb_chan_as_fn = function(a, b) {
   }(b, c, d, a);
 };
 taoensso.sente.receive_buffered_evs_BANG_ = function(a, b) {
-  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 857, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
+  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 857, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
     return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["receive-buffered-evs!: %s", b], null);
-  }, null), null, -248929731);
+  }, null), null, 636757063);
   var c = cljs.core.vector_QMARK_.call(null, b) ? b : taoensso.truss.impl._invar_violation_BANG_.call(null, !0, "taoensso.sente", 858, "(vector? clj)", b, null, null);
   c = cljs.core.seq.call(null, c);
   for (var d = null, e = 0, f = 0;;) {
@@ -50495,20 +50495,20 @@ taoensso.sente.receive_handshake_BANG_ = function(a, b, c) {
     }
   }
   null != e && taoensso.truss.impl._invar_violation_BANG_.call(null, !0, "taoensso.sente", 873, "(handshake? clj)", c, e, null);
-  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 874, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
+  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 874, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
     return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, ["receive-handshake! (%s): %s", a, c], null);
-  }, null), null, -1683574834);
+  }, null), null, -1830074697);
   d = cljs.core.nth.call(null, c, 0, null);
   e = cljs.core.nth.call(null, c, 1, null);
   var f = cljs.core.nth.call(null, e, 0, null), g = cljs.core.nth.call(null, e, 1, null), h = cljs.core.nth.call(null, e, 2, null), k = null != b && (b.cljs$lang$protocol_mask$partition0$ & 64 || cljs.core.PROTOCOL_SENTINEL === b.cljs$core$ISeq$) ? cljs.core.apply.call(null, cljs.core.hash_map, b) : b, m = cljs.core.get.call(null, k, new cljs.core.Keyword(null, "chs", "chs", 376886120)), l = cljs.core.get.call(null, k, new cljs.core.Keyword(null, "ever-opened?_", "ever-opened?_", 1641338913)), n = 
   cljs.core.compare_and_set_BANG_.call(null, l, !1, !0), p = new cljs.core.PersistentArrayMap(null, 7, [new cljs.core.Keyword(null, "type", "type", 1174270348), a, new cljs.core.Keyword(null, "open?", "open?", 1238443125), !0, new cljs.core.Keyword(null, "ever-opened?", "ever-opened?", 1128459732), !0, new cljs.core.Keyword(null, "uid", "uid", -1447769400), f, new cljs.core.Keyword(null, "csrf-token", "csrf-token", -1872302856), g, new cljs.core.Keyword(null, "handshake-data", "handshake-data", -278378864), 
   h, new cljs.core.Keyword(null, "first-open?", "first-open?", 396686530), n], null), q = new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("chsk", "handshake", "chsk/handshake", 64910686), new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [f, g, h, n], null)], null);
   taoensso.sente.assert_event.call(null, q);
-  clojure.string.blank_QMARK_.call(null, g) && taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 893, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p) {
+  clojure.string.blank_QMARK_.call(null, g) && taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 893, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p) {
     return function() {
       return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, ["SECURITY WARNING: no CSRF token available for use by Sente"], null);
     };
-  }(c, d, e, f, g, h, b, k, m, l, n, p, q), null), null, -460600161);
+  }(c, d, e, f, g, h, b, k, m, l, n, p, q), null), null, -1599781934);
   taoensso.sente.swap_chsk_state_BANG_.call(null, b, function(a, b, c, d, e, f, g, h, k, l, m, n, p) {
     return function(a) {
       return cljs.core.merge.call(null, a, n);
@@ -50773,11 +50773,11 @@ taoensso.sente.ChWebSocket.prototype.taoensso$sente$IChSocket$_chsk_send_BANG_$a
   try {
     return cljs.core.deref.call(null, d.socket_).send(b), cljs.core.reset_BANG_.call(null, d.udt_last_comms_, taoensso.encore.now_udt.call(null)), new cljs.core.Keyword(null, "apparent-success", "apparent-success", 242592222);
   } catch (n) {
-    return l = n, taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "error", "error", -978969032), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 975, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m) {
+    return l = n, taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "error", "error", -978969032), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 975, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m) {
       return function() {
         return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [a, "Chsk send error"], null);
       };
-    }(l, m, b, c, a, e, f, g, h, k, this), null), null, -945475889), cljs.core.truth_(m) && function() {
+    }(l, m, b, c, a, e, f, g, h, k, this), null), null, -1078948711), cljs.core.truth_(m) && function() {
       var a = taoensso.sente.pull_unused_cb_fn_BANG_.call(null, d.cbs_waiting_, m);
       if (cljs.core.truth_(a)) {
         return a;
@@ -50817,11 +50817,11 @@ taoensso.sente.ChWebSocket.prototype.taoensso$sente$IChSocket$_chsk_connect_BANG
             return function() {
               if (cljs.core.truth_(c.call(null))) {
                 var g = cljs.core.swap_BANG_.call(null, b.retry_count_, cljs.core.inc), h = b.backoff_ms_fn.call(null, g), k = taoensso.encore.now_udt.call(null) + h;
-                taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 1000, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h) {
+                taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 1000, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h) {
                   return function() {
                     return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Chsk is closed: will try reconnect attempt (%s) in %s ms", a, b], null);
                   };
-                }(g, h, k, a, c, d, e, f), null), null, -244839503);
+                }(g, h, k, a, c, d, e, f), null), null, 876826759);
                 goog.global.setTimeout(q, h);
                 return taoensso.sente.swap_chsk_state_BANG_.call(null, f, function(a, b, c, d, e, f, g, h) {
                   return function(a) {
@@ -50836,18 +50836,18 @@ taoensso.sente.ChWebSocket.prototype.taoensso$sente$IChSocket$_chsk_connect_BANG
               return new d(taoensso.encore.merge_url_with_query_string.call(null, b.url, cljs.core.merge.call(null, b.params, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "client-id", "client-id", -464622140), b.client_id], null))));
             } catch (v) {
               var h = v;
-              taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "error", "error", -978969032), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 1014, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g) {
+              taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "error", "error", -978969032), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 1014, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g) {
                 return function() {
                   return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [a, "WebSocket error"], null);
                 };
-              }(h, g, a, c, d, e, f), null), null, -808356911);
+              }(h, g, a, c, d, e, f), null), null, 880482725);
               return null;
             }
           }();
           return cljs.core.not.call(null, h) ? g.call(null) : cljs.core.reset_BANG_.call(null, b.socket_, function() {
             h.onerror = function(a, b, c, d, e, f, g, h) {
               return function(k) {
-                taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "error", "error", -978969032), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 1024, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h) {
+                taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "error", "error", -978969032), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 1024, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h) {
                   return function() {
                     var a = cljs.core.PersistentVector, b = cljs.core.PersistentVector.EMPTY_NODE;
                     try {
@@ -50857,7 +50857,7 @@ taoensso.sente.ChWebSocket.prototype.taoensso$sente$IChSocket$_chsk_connect_BANG
                     }
                     return new a(null, 2, 5, b, ["WebSocket error: %s", c], null);
                   };
-                }(a, b, c, d, e, f, g, h), null), null, -2003495334);
+                }(a, b, c, d, e, f, g, h), null), null, -14892228);
                 var l = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null, "udt", "udt", 2011712751), taoensso.encore.now_udt.call(null), new cljs.core.Keyword(null, "ev", "ev", -406827324), k], null);
                 return taoensso.sente.swap_chsk_state_BANG_.call(null, h, function(a, b, c, d, e, f, g, h, k) {
                   return function(b) {
@@ -50892,11 +50892,11 @@ taoensso.sente.ChWebSocket.prototype.taoensso$sente$IChSocket$_chsk_connect_BANG
                 }
                 if (cljs.core.truth_(q)) {
                   var u = taoensso.sente.pull_unused_cb_fn_BANG_.call(null, b.cbs_waiting_, q);
-                  return cljs.core.truth_(u) ? u.call(null, n) : taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 1060, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, q, r, t, u, v) {
+                  return cljs.core.truth_(u) ? u.call(null, n) : taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 1060, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, q, r, t, u, v) {
                     return function() {
                       return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Cb reply w/o local cb-fn: %s", h], null);
                     };
-                  }(u, q, q, t, r, l, m, n, q, a, c, d, e, f, g, h, k), null), null, 1825929408);
+                  }(u, q, q, t, r, l, m, n, q, a, c, d, e, f, g, h, k), null), null, 223265947);
                 }
                 return taoensso.sente.receive_buffered_evs_BANG_.call(null, b.chs, n);
               };
@@ -50906,11 +50906,11 @@ taoensso.sente.ChWebSocket.prototype.taoensso$sente$IChSocket$_chsk_connect_BANG
                 var l = taoensso.encore.oget.call(null, k, "wasClean"), m = taoensso.encore.oget.call(null, k, "code"), n = taoensso.encore.oget.call(null, k, "reason");
                 k = new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null, "udt", "udt", 2011712751), taoensso.encore.now_udt.call(null), new cljs.core.Keyword(null, "ev", "ev", -406827324), k, new cljs.core.Keyword(null, "clean?", "clean?", -1675631009), l, new cljs.core.Keyword(null, "code", "code", 1586293142), m, new cljs.core.Keyword(null, "reason", "reason", -2070751759), n], null);
                 if (cljs.core.truth_(l)) {
-                  return taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "debug", "debug", -1608172596), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 1082, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n) {
+                  return taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "debug", "debug", -1608172596), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 1082, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n) {
                     return function() {
                       return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Clean WebSocket close, will not attempt reconnect"], null);
                     };
-                  }(l, m, n, k, a, b, c, d, e, f, g, h), null), null, 2021945553), taoensso.sente.swap_chsk_state_BANG_.call(null, h, function(a, b, c, d, e, f, g, h, k, l, m, n) {
+                  }(l, m, n, k, a, b, c, d, e, f, g, h), null), null, -120178586), taoensso.sente.swap_chsk_state_BANG_.call(null, h, function(a, b, c, d, e, f, g, h, k, l, m, n) {
                     return function(a) {
                       return cljs.core.assoc.call(null, a, new cljs.core.Keyword(null, "last-ws-close", "last-ws-close", -798104932), d);
                     };
@@ -51206,12 +51206,12 @@ taoensso.sente.ChAjaxSocket.prototype.taoensso$sente$IChSocket$_chsk_send_BANG_$
         return cljs.core.truth_(k) ? k.call(null, new cljs.core.Keyword("chsk", "error", "chsk/error", -984175439)) : null;
       }
       var r = taoensso.sente.unpack.call(null, d.packer, q), t = cljs.core.nth.call(null, r, 0, null), u = cljs.core.nth.call(null, r, 1, null);
-      cljs.core.truth_(k) ? k.call(null, t) : cljs.core.not_EQ_.call(null, t, new cljs.core.Keyword("chsk", "dummy-cb-200", "chsk/dummy-cb-200", -1663130337)) && taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 1202, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", 
+      cljs.core.truth_(k) ? k.call(null, t) : cljs.core.not_EQ_.call(null, t, new cljs.core.Keyword("chsk", "dummy-cb-200", "chsk/dummy-cb-200", -1663130337)) && taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 1202, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", 
       -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, q, r, t, u, v) {
         return function() {
           return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Cb reply w/o local cb-fn: %s", d], null);
         };
-      }(q, q, r, t, u, l, n, p, q, a, b, c, e, f, g, h, k, m), null), null, 1126968677);
+      }(q, q, r, t, u, l, n, p, q, a, b, c, e, f, g, h, k, m), null), null, 1933187617);
       return taoensso.sente.swap_chsk_state_BANG_.call(null, m, function(a, b, c, d, e, f, g, h, k, l, m, n, p, q, r, t, u, v) {
         return function(a) {
           return cljs.core.assoc.call(null, a, new cljs.core.Keyword(null, "open?", "open?", 1238443125), !0);
@@ -51231,21 +51231,21 @@ taoensso.sente.ChAjaxSocket.prototype.taoensso$sente$IChSocket$_chsk_connect_BAN
   }(a, this);
   (function(a, c, f) {
     return function k(d) {
-      taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 1212, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c) {
+      taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 1212, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c) {
         return function() {
           return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, ["async-poll-for-update!"], null);
         };
-      }(a, c, f), null), null, 497462361);
+      }(a, c, f), null), null, 877548954);
       if (cljs.core.truth_(c.call(null))) {
         var e = function(a, c, e) {
           return function() {
             if (cljs.core.truth_(c.call(null))) {
               var f = d + 1, h = b.backoff_ms_fn.call(null, f), l = taoensso.encore.now_udt.call(null) + h;
-              taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 1220, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f) {
+              taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 1220, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f) {
                 return function() {
                   return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Chsk is closed: will try reconnect attempt (%s) in %s ms", a, b], null);
                 };
-              }(f, h, l, a, c, e), null), null, -1676179712);
+              }(f, h, l, a, c, e), null), null, 1572738982);
               goog.global.setTimeout(function(a, b, c, d, e, f) {
                 return function() {
                   return k.call(null, a);
@@ -51442,11 +51442,11 @@ taoensso.sente.ChAutoSocket.prototype.taoensso$sente$IChSocket$_chsk_connect_BAN
               return null;
             }
             if (cljs.core.truth_((new cljs.core.Keyword(null, "last-error", "last-error", 1848699973)).cljs$core$IFn$_invoke$arity$1(l)) && cljs.core.truth_(cljs.core.compare_and_set_BANG_.call(null, a, !1, !0))) {
-              return taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 1348, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k) {
+              return taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 1348, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k) {
                 return function() {
                   return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Permanently downgrading :auto chsk -\x3e :ajax"], null);
                 };
-              }(h, h, g, g, a, c, d, e, f), null), null, 1150172984), taoensso.sente._chsk_disconnect_BANG_.call(null, g, new cljs.core.Keyword(null, "downgrading-ws-to-ajax", "downgrading-ws-to-ajax", 402136720)), cljs.core.reset_BANG_.call(null, b.impl_, e.call(null));
+              }(h, h, g, g, a, c, d, e, f), null), null, 510604089), taoensso.sente._chsk_disconnect_BANG_.call(null, g, new cljs.core.Keyword(null, "downgrading-ws-to-ajax", "downgrading-ws-to-ajax", 402136720)), cljs.core.reset_BANG_.call(null, b.impl_, e.call(null));
             }
           }
           return null;
@@ -51570,17 +51570,17 @@ taoensso.sente.make_channel_socket_client_BANG_.cljs$core$IFn$_invoke$arity$vari
     }
   }
   null != v && taoensso.truss.impl._invar_violation_BANG_.call(null, !0, "taoensso.sente", 1411, "(enc/nblank-str? client-id)", g, v, null);
-  null != t && taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 1413, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, q, r, t) {
+  null != t && taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 1413, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, q, r, t) {
     return function() {
       return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, ["`make-channel-socket-client!` fn signature CHANGED with Sente v0.10.0."], null);
     };
-  }(b, c, d, d, e, f, g, h, k, m, l, n, p, q, r, t), null), null, -671941792);
-  cljs.core.contains_QMARK_.call(null, d, new cljs.core.Keyword(null, "lp-timeout", "lp-timeout", 1149461302)) && taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 1414, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, 
+  }(b, c, d, d, e, f, g, h, k, m, l, n, p, q, r, t), null), null, 866838869);
+  cljs.core.contains_QMARK_.call(null, d, new cljs.core.Keyword(null, "lp-timeout", "lp-timeout", 1149461302)) && taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 1414, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, 
   b, c, d, e, f, g, h, k, l, m, n, p, q, r, t) {
     return function() {
       return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [":lp-timeout opt has CHANGED; please use :lp-timout-ms."], null);
     };
-  }(b, c, d, d, e, f, g, h, k, m, l, n, p, q, r, t), null), null, 1238461803);
+  }(b, c, d, d, e, f, g, h, k, m, l, n, p, q, r, t), null), null, 1188946529);
   var w = taoensso.sente.coerce_packer.call(null, k), x = function() {
     var b = taoensso.encore.get_win_loc.call(null), c = cljs.core.truth_(a) ? a : (new cljs.core.Keyword(null, "pathname", "pathname", -1420497528)).cljs$core$IFn$_invoke$arity$1(b), e = (new cljs.core.Keyword(null, "chsk-url-fn", "chsk-url-fn", 1968894294)).cljs$core$IFn$_invoke$arity$1(d);
     if (cljs.core.truth_(e)) {
@@ -51626,11 +51626,11 @@ taoensso.sente.make_channel_socket_client_BANG_.cljs$core$IFn$_invoke$arity$vari
     cljs.core.async.pipe.call(null, F, H);
     return new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null, "chsk", "chsk", -863703081), u, new cljs.core.Keyword(null, "ch-recv", "ch-recv", -990916861), H, new cljs.core.Keyword(null, "send-fn", "send-fn", 351002041), v, new cljs.core.Keyword(null, "state", "state", -1988618099), (new cljs.core.Keyword(null, "state_", "state_", 957667102)).cljs$core$IFn$_invoke$arity$1(u)], null);
   }
-  return taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 1502, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, q, r, t, u, v, w, x, y, z, A, F, B, C, D) {
+  return taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 1502, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, q, r, t, u, v, w, x, y, z, A, F, B, C, D) {
     return function() {
       return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Failed to create channel socket"], null);
     };
-  }(u, w, x, y, z, H, S, B, C, G, u, b, c, d, d, e, f, g, h, k, m, l, n, p, q, r, t), null), null, 1086112176);
+  }(u, w, x, y, z, H, S, B, C, G, u, b, c, d, d, e, f, g, h, k, m, l, n, p, q, r, t), null), null, 1682315372);
 };
 taoensso.sente.make_channel_socket_client_BANG_.cljs$lang$maxFixedArity = 1;
 taoensso.sente.make_channel_socket_client_BANG_.cljs$lang$applyTo = function(a) {
@@ -51750,12 +51750,12 @@ taoensso.sente._start_chsk_router_BANG_ = function(a, b, c, d) {
                 return function(b, d, e, f, g, h, k, l, m, n, p, q, r, t, u, v, w, x, y, z, A, B) {
                   return function() {
                     try {
-                      return cljs.core.truth_(x) && taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 1529, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, q, r, t, u, v, w, x, 
+                      return cljs.core.truth_(x) && taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 1529, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, q, r, t, u, v, w, x, 
                       y, z) {
                         return function() {
                           return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Pre-handler event: %s", g], null);
                         };
-                      }(b, d, e, f, g, h, k, l, m, n, p, q, r, t, u, v, w, x, y, z, A, B), null), null, 1655871557), c.call(null, cljs.core.truth_(a) ? function() {
+                      }(b, d, e, f, g, h, k, l, m, n, p, q, r, t, u, v, w, x, y, z, A, B), null), null, -1483165441), c.call(null, cljs.core.truth_(a) ? function() {
                         try {
                           var a = cljs.core.truth_(taoensso.sente.server_event_msg_QMARK_.call(null, h)) ? null : taoensso.truss.impl._dummy_error;
                         } catch (Z) {
@@ -51782,20 +51782,20 @@ taoensso.sente._start_chsk_router_BANG_ = function(a, b, c, d) {
                       if (ea instanceof Error) {
                         var C = ea;
                         try {
-                          return cljs.core.truth_(y) ? y.call(null, C, h) : taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "error", "error", -978969032), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 1538, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, 
+                          return cljs.core.truth_(y) ? y.call(null, C, h) : taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "error", "error", -978969032), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 1538, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, 
                           q, r, t, u, v, w, x, y, z, A, B) {
                             return function() {
                               return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [b, "Chsk router `event-msg-handler` error: %s", k], null);
                             };
-                          }(y, C, b, d, e, f, g, h, k, l, m, n, p, q, r, t, u, v, w, x, y, z, A, B), null), null, -939309199);
+                          }(y, C, b, d, e, f, g, h, k, l, m, n, p, q, r, t, u, v, w, x, y, z, A, B), null), null, -93080294);
                         } catch (Z) {
                           if (Z instanceof Error) {
                             var D = Z;
-                            return taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "error", "error", -978969032), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init7702155329125426115.clj", 1539, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, q, r, t, u, v, w, x, y, z, A, B) {
+                            return taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "error", "error", -978969032), "taoensso.sente", "/private/var/folders/nd/808jcb891bl7f7rj3xw2xkzh0000gn/T/form-init5253441994538130131.clj", 1539, new cljs.core.Keyword(null, "f", "f", -1597136552), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p, q, r, t, u, v, w, x, y, z, A, B) {
                               return function() {
                                 return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [a, "Chsk router `error-handler` error: %s", k], null);
                               };
-                            }(D, C, b, d, e, f, g, h, k, l, m, n, p, q, r, t, u, v, w, x, y, z, A, B), null), null, -727027384);
+                            }(D, C, b, d, e, f, g, h, k, l, m, n, p, q, r, t, u, v, w, x, y, z, A, B), null), null, 385306682);
                           }
                           throw Z;
                         }

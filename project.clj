@@ -20,4 +20,5 @@
   :plugins [[environ/environ.lein "0.2.1"]]
   :hooks [environ.leiningen.hooks]
   :uberjar-name "rummikub-heroku-standalone.jar"
+  :jvm-opts ["--add-modules" "java.xml.bind"]
   :profiles {:production {:env {:production true}}})

@@ -9,7 +9,9 @@
          ]
      (~'go
       (while @continue-atom#
-        ~@body)
+        (try
+          ~@body
+          (catch Throwable t# (prn t#))))
       (println "cancelling go"))
      continue-atom#))
 
